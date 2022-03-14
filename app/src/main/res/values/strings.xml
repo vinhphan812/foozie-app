@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FOOZIE_APP</string>
+    <string name="forGetPass"><u>Quên mật khẩu?</u></string>
+    <string name="signUp"><u>Đăng ký</u></string>
+    <string name="signIn"><u>Đăng nhập</u></string>
+    <string name="action_home">Home</string>
+    <string name="action_activity">Activity</string>
+    <string name="action_payment">Payment</string>
+    <string name="action_gift">Gift</string>
+    <string name="action_acc">Account</string>
 </resources>
