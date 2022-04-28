@@ -31,11 +31,14 @@ import vn.edu.huflit.foozie_app.Models.Order;
 import vn.edu.huflit.foozie_app.Models.ResponseDTO;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Models.Voucher;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class API {
     // region Property
-    String HOST = "http://192.168.1.3:3000";
+    public static String HOST = "http://192.168.1.3:3000";
     private final OkHttpClient client;
+
+    CookieJar cookieJar;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -44,8 +47,8 @@ public class API {
 
     //region Constructor
     public API() {
-        CookieJar cookieJar = new CookieJar() {
-            private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+        cookieJar = new CookieJar() {
+            public HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
 
             @Override
             public void saveFromResponse(HttpUrl url, @NonNull List<Cookie> cookies) {
@@ -56,6 +59,10 @@ public class API {
             public List<Cookie> loadForRequest(HttpUrl url) {
                 List<Cookie> cookies = cookieStore.get(url.host());
                 return cookies != null ? cookies : new ArrayList<Cookie>();
+            }
+
+            public void clearCookie(){
+                cookieStore = new HashMap<>();
             }
         };
         client = new OkHttpClient.Builder()
@@ -130,7 +137,6 @@ public class API {
             throw e;
         }
     }
-
     public String Logout() {
         ResponseDTO res = requestServer("/auth/logout");
         return res.message;
@@ -340,3 +346,4 @@ public class API {
     }
     //endregion
 }
+
