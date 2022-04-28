@@ -5,14 +5,19 @@ import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import vn.edu.huflit.foozie_app.API.API;
+import vn.edu.huflit.foozie_app.API.*;
 
 public class Utilities {
-    static public enum AlertType {
+    public enum AlertType {
         Error, Info, Success
     }
 
     static public API api = new API();
+
+    static public void init(String apiURL) {
+        API.HOST = apiURL;
+        ImageAPI.HOST = apiURL;
+    }
 
     static public void alert(View view, String message) {
         alert(view, message, AlertType.Info);
