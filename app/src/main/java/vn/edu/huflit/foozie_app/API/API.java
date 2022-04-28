@@ -26,14 +26,17 @@ import okhttp3.Response;
 import vn.edu.huflit.foozie_app.Models.Branch;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
+import vn.edu.huflit.foozie_app.Models.MyVoucher;
 import vn.edu.huflit.foozie_app.Models.Notification;
 import vn.edu.huflit.foozie_app.Models.Order;
 import vn.edu.huflit.foozie_app.Models.ResponseDTO;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Models.Voucher;
-import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class API {
+    enum ChangeType {
+        INCREASEMENT, DECREASEMENT
+    }
     // region Property
     public static String HOST;
     private final OkHttpClient client;
@@ -152,13 +155,13 @@ public class API {
         return gson.fromJson(gson.toJson(res.data), User.class);
     }
 
-    public List<Voucher> getMyVouchers() throws Exception {
+    public MyVoucher getMyVouchers() throws Exception {
 
         ResponseDTO res = requestServer("/api/user/vouchers");
 
         res.isInvalid();
 
-        Type listType = new TypeToken<List<Voucher>>() {
+        Type listType = new TypeToken<MyVoucher>() {
         }.getType();
 
         return gson.fromJson(gson.toJson(res.data), listType);
@@ -279,8 +282,17 @@ public class API {
     }
 
     public String addCart(String id) {
+        return changeCart(id, ChangeType.INCREASEMENT);
+    }
+
+    public String removeInCart(String id) {
+        return changeCart(id, ChangeType.DECREASEMENT);
+    }
+
+    private String changeCart(String id, ChangeType type) {
         HashMap map = new HashMap();
-        map.put("id", id);
+        map.put("food", id);
+        map.put("type", type);
         String jsonBody = gson.toJson(map);
 
         ResponseDTO res = requestServer("/api/cart", RequestBody.create(JSON, jsonBody));
