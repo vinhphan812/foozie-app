@@ -5,26 +5,35 @@ import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import vn.edu.huflit.foozie_app.API.API;
+import vn.edu.huflit.foozie_app.API.*;
 
 public class Utilities {
-    static public API api = new API();
-
-    static public void alert(View view, String message) {
-        alert(view, message, "Info");
+    public enum AlertType {
+        Error, Info, Success
     }
 
-    static public void alert(View view, String message, String type) {
+    static public API api = new API();
+
+    static public void init(String apiURL) {
+        API.HOST = apiURL;
+        ImageAPI.HOST = apiURL;
+    }
+
+    static public void alert(View view, String message) {
+        alert(view, message, AlertType.Info);
+    }
+
+    static public void alert(View view, String message, AlertType type) {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).setBackgroundTint(getColorType(type)).show();
     }
 
-    private static int getColorType(String Type) {
+    private static int getColorType(AlertType Type) {
         switch (Type) {
-            case "Error":
+            case Error:
                 return Color.parseColor("#dc3545");
-            case "Info":
+            case Info:
                 return Color.parseColor("#0d6efd");
-            case "Success":
+            case Success:
                 return Color.parseColor("#198754");
             default:
                 return 0;

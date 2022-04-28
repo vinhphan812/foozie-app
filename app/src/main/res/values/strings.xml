@@ -8,4 +8,7 @@
     <string name="action_payment">Payment</string>
     <string name="action_gift">Gift</string>
     <string name="action_acc">Account</string>
+
+    <!--  URL HOST OF API  -->
+    <string name="api_url">http://192.168.20.134:3000</string>
 </resources>
