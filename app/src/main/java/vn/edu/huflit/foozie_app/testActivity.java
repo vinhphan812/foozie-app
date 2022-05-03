@@ -2,20 +2,28 @@ package vn.edu.huflit.foozie_app;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import vn.edu.huflit.foozie_app.API.API;
+import vn.edu.huflit.foozie_app.API.ImageAPI;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class testActivity extends AppCompatActivity {
+
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        API api = new API();
+        image = findViewById(R.id.testImageView);
+
+        Utilities.init(getResources().getString(R.string.api_url));
+
+        API api = Utilities.api;
 
         try {
             //region User
@@ -23,7 +31,7 @@ public class testActivity extends AppCompatActivity {
 
             Log.d("Login", api.Login("vinhphan812", "12345678"));
             Log.d("getMe", api.getMe().toString());
-            Log.d("MyVouchers", api.getMyVouchers().size() + "");
+            Log.d("MyVouchers", api.getMyVouchers() + "");
 
             Log.d("Logout", api.Logout());
             //endregion
@@ -36,6 +44,8 @@ public class testActivity extends AppCompatActivity {
             Log.d("GetCart", api.getCart().size() + "");
             Log.d("addCart", api.addCart("62263546c44f38a0f56e7360"));
             Log.d("Voucher", api.getVoucherPublic().size() + "");
+
+            ImageAPI.get("/images/rankings/diamond.png", image);
             //endregion
         } catch (Exception e) {
             Log.d("Exception", e.getMessage());
