@@ -5,161 +5,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F3FA"
     tools:context=".activity_signup">
 
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="50dp"
-      android:layout_marginEnd="20dp"
-      android:fontFamily="@font/roboto_black"
-      android:text="Tạo tài khoản."
-      android:textColor="#243665"
-      android:textSize="50dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <TextView
-      android:id="@+id/textView3"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="20dp"
-      android:fontFamily="@font/roboto_medium"
-      android:text="Hãy đăng ký tài khoản để có trải nghiệm tốt hơn."
-      android:textColor="#243665"
-      android:textSize="20dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/username"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="40dp"
-      android:layout_marginEnd="20dp"
-      android:hint="Tên tài khoản"
-      app:boxStrokeColor="#243665"
-      app:hintTextColor="#243665"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-    <com.google.android.material.textfield.TextInputEditText
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_sign_up_account"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-  </com.google.android.material.textfield.TextInputLayout>
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/password"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="20dp"
-      android:hint="Mật khẩu"
-      app:boxStrokeColor="#243665"
-      app:hintTextColor="#243665"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/username"
-      app:passwordToggleEnabled="true">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"/>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textPassword" />
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/confirm_password"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="20dp"
-      android:hint="Xác nhận Mật khẩu"
-      app:boxStrokeColor="#243665"
-      app:hintTextColor="#243665"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/password"
-      app:passwordToggleEnabled="true">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textPassword" />
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/phone"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="20dp"
-      android:hint="Số điện thoại"
-      app:boxStrokeColor="#243665"
-      app:hintTextColor="#243665"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/confirm_password">
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      android:inputType="phone"/>
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <CheckBox
-      android:id="@+id/chk_accept"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="20dp"
-      android:buttonTint="#31AFD4"
-      android:fontFamily="@font/roboto_medium"
-      android:text="đồng ý với các điều khoản sử dụng"
-      android:textColor="#243665"
-      android:textSize="15dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/phone" />
-
-  <Button
-      android:id="@+id/btn_signUp"
-      android:layout_width="320dp"
-      android:layout_height="50dp"
-      android:layout_marginTop="20dp"
-      android:backgroundTint="#243665"
-      android:text="Đăng ký"
-      android:fontFamily="@font/roboto_medium"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/chk_accept" />
-
-  <TextView
-      android:id="@+id/btn_signIn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:fontFamily="@font/roboto_black"
-      android:text="@string/signIn"
-      android:textAlignment="center"
-      android:textColor="#243665"
-      android:textSize="17dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_signUp" />
+    <fragment
+        android:id="@+id/nav_sign_up"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_sign_up_account"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/nav_sign_up" />
 </androidx.constraintlayout.widget.ConstraintLayout>

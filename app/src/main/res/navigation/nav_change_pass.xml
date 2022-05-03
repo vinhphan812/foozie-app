@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_change_pass"
+    app:startDestination="@id/verifyEmailFragment">
+
+    <fragment
+        android:id="@+id/verifyEmailFragment"
+        android:name="vn.edu.huflit.foozie_app.fragments.changePass.verifyEmailFragment"
+        tools:layout="@layout/fragment_verify_email" >
+        <action
+            android:id="@+id/action_typeEmailFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="vn.edu.huflit.foozie_app.fragments.changePass.changePasswordFragment"
+        tools:layout="@layout/fragment_change_password" />
+</navigation>
