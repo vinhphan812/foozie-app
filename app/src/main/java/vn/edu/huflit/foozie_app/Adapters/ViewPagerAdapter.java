@@ -1,15 +1,15 @@
-package vn.edu.huflit.foozie_app.adapter;
+package vn.edu.huflit.foozie_app.Adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import vn.edu.huflit.foozie_app.fragments.homepage.AccountFragment;
-import vn.edu.huflit.foozie_app.fragments.homepage.VoucherFragment;
-import vn.edu.huflit.foozie_app.fragments.homepage.NotificationsFragment;
-import vn.edu.huflit.foozie_app.fragments.homepage.ActivityFragment;
-import vn.edu.huflit.foozie_app.fragments.homepage.HomeFragment;
+import vn.edu.huflit.foozie_app.Fragments.homepage.AccountFragment;
+import vn.edu.huflit.foozie_app.Fragments.homepage.VoucherFragment;
+import vn.edu.huflit.foozie_app.Fragments.homepage.NotificationsFragment;
+import vn.edu.huflit.foozie_app.Fragments.homepage.ActivityFragment;
+import vn.edu.huflit.foozie_app.Fragments.homepage.HomeFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {

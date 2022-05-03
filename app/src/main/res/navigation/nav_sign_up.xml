@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/name_birthday_Fragment"
-        android:name="vn.edu.huflit.foozie_app.fragments.signUp.name_birthday_Fragment"
+        android:name="vn.edu.huflit.foozie_app.Fragments.signUp.name_birthday_Fragment"
         tools:layout="@layout/fragment_name_birthday_" >
         <action
             android:id="@+id/action_name_birthday_Fragment_to_phone_address_Fragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/phone_address_Fragment"
-        android:name="vn.edu.huflit.foozie_app.fragments.signUp.phone_addressFragment"
+        android:name="vn.edu.huflit.foozie_app.Fragments.signUp.phone_addressFragment"
         tools:layout="@layout/fragment_phone_address" >
         <action
             android:id="@+id/action_phone_address_Fragment_to_usernme_password_Fragment"
@@ -23,6 +23,6 @@
     </fragment>
     <fragment
         android:id="@+id/usernme_password_Fragment"
-        android:name="vn.edu.huflit.foozie_app.fragments.signUp.usernme_password_Fragment"
+        android:name="vn.edu.huflit.foozie_app.Fragments.signUp.usernme_password_Fragment"
         tools:layout="@layout/fragment_usernme_password_" />
 </navigation>

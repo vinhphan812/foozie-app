@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import vn.edu.huflit.foozie_app.adapter.ViewPagerAdapter;
+import vn.edu.huflit.foozie_app.Adapters.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mbottomNavigationView;

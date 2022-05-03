@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F3FA"
-    tools:context=".fragments.homepage.VoucherFragment">
+    tools:context=".Fragments.homepage.VoucherFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

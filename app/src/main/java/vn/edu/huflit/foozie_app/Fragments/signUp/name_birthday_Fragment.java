@@ -1,6 +1,5 @@
-package vn.edu.huflit.foozie_app.fragments.changePass;
+package vn.edu.huflit.foozie_app.Fragments.signUp;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,17 +17,16 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
-import vn.edu.huflit.foozie_app.activity_signin;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link changePasswordFragment#newInstance} factory method to
+ * Use the {@link name_birthday_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class changePasswordFragment extends Fragment {
-    Button btnChangePass;
+public class name_birthday_Fragment extends Fragment {
+    Button btnNext;
     NavController navController;
-    TextInputLayout pass, confirm;
+    TextInputLayout firstName, lastName;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,7 +36,7 @@ public class changePasswordFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public changePasswordFragment() {
+    public name_birthday_Fragment() {
         // Required empty public constructor
     }
 
@@ -48,11 +46,11 @@ public class changePasswordFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment changePasswordFragment.
+     * @return A new instance of fragment name_birthday_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static changePasswordFragment newInstance(String param1, String param2) {
-        changePasswordFragment fragment = new changePasswordFragment();
+    public static name_birthday_Fragment newInstance(String param1, String param2) {
+        name_birthday_Fragment fragment = new name_birthday_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,36 +71,33 @@ public class changePasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_change_password, container, false);
+        return inflater.inflate(R.layout.fragment_name_birthday_, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = new Bundle();
         navController = Navigation.findNavController(view);
-        btnChangePass = view.findViewById(R.id.btn_change_pass_verify);
-        pass = view.findViewById(R.id.edt_pass_verify);
-        confirm = view.findViewById(R.id.edt_confirm_verify);
-        btnChangePass.setOnClickListener(new View.OnClickListener() {
+        btnNext = view.findViewById(R.id.btn_next_signUp);
+        firstName = view.findViewById(R.id.edt_first_name_signUp);
+        lastName = view.findViewById(R.id.edt_last_name_signUp);
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Pass = pass.getEditText().getText().toString();
-                String Confirm = confirm.getEditText().getText().toString();
-                if (Pass.isEmpty() || Confirm.isEmpty()) {
+                String FirstName = firstName.getEditText().getText().toString();
+                String LastName = lastName.getEditText().getText().toString();
+
+                if (FirstName.isEmpty() || LastName.isEmpty()) {
                     Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
                     return;
+                } else {
+                    bundle.putString("first_name", FirstName);
+                    bundle.putString("last_name", LastName);
                 }
-                if (Pass.length() < 10) {
-                    Snackbar.make(view, "Vui lòng nhập mật khẩu 10 ký tự!", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-                if (!Pass.equals(Confirm)) {
-                    Snackbar.make(view, "Mật khẩu không trùng khớp!", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-                Intent intent = new Intent(v.getContext(), activity_signin.class);
-                startActivity(intent);
+                navController.navigate(R.id.action_name_birthday_Fragment_to_phone_address_Fragment, bundle);
             }
         });
     }
+
 }

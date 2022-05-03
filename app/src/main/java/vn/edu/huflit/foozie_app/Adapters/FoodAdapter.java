@@ -1,19 +1,10 @@
-package vn.edu.huflit.foozie_app.adapter;
+package vn.edu.huflit.foozie_app.Adapters;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
-import vn.edu.huflit.foozie_app.Models.Food;
-import vn.edu.huflit.foozie_app.R;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolderFood> {
 

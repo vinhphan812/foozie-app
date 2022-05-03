@@ -1,34 +1,33 @@
-package vn.edu.huflit.foozie_app.fragments.homepage;
+package vn.edu.huflit.foozie_app.Fragments.homepage;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
-import okhttp3.internal.cache.DiskLruCache;
-import vn.edu.huflit.foozie_app.Models.Food;
-import vn.edu.huflit.foozie_app.Models.User;
+import java.util.List;
+
+import vn.edu.huflit.foozie_app.Models.FoodType;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
-import vn.edu.huflit.foozie_app.activity_signin;
+import vn.edu.huflit.foozie_app.Adapters.TypeFoodAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AccountFragment#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AccountFragment extends Fragment {
-    Button btnLogOut;
-    TextView Name, Email, Phone, Date;
-    User user;
+public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener {
+    RecyclerView rvTypeFood;
+    TypeFoodAdapter typeFoodAdapter;
+    List<FoodType> foodTypes;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,7 +37,7 @@ public class AccountFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AccountFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -48,11 +47,11 @@ public class AccountFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AccountFragment newInstance(String param1, String param2) {
-        AccountFragment fragment = new AccountFragment();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,31 +72,26 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnLogOut = (Button) view.findViewById(R.id.btn_log_out);
-        Name = view.findViewById(R.id.tv_name_user);
-        Email = view.findViewById(R.id.tv_email_user);
-        Phone = view.findViewById(R.id.tv_phone_user);
-        Date = view.findViewById(R.id.tv_join_date_user);
+        rvTypeFood = view.findViewById(R.id.rv_food_type);
         try {
-            user = Utilities.api.getMe();
-            Name.setText(user.first_name + " " + user.last_name);
-            Email.setText(user.email);
-            Phone.setText(user.phone);
-            Date.setText(user.created_at);
-
+            foodTypes = Utilities.api.getFoodTypes();
+            typeFoodAdapter = new TypeFoodAdapter(foodTypes, this);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            rvTypeFood.setLayoutManager(linearLayoutManager);
+            rvTypeFood.setAdapter(typeFoodAdapter);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        btnLogOut.setOnClickListener(v -> {
-            Utilities.api.Logout();
-            Intent intent = new Intent(view.getContext(), activity_signin.class);
-            startActivity(intent);
-        });
+    }
+
+    @Override
+    public void onClick(FoodType typeItem) {
+
     }
 }

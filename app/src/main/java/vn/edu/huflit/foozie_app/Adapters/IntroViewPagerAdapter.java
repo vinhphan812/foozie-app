@@ -1,4 +1,4 @@
-package vn.edu.huflit.foozie_app.adapter;
+package vn.edu.huflit.foozie_app.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
