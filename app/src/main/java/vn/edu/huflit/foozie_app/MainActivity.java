@@ -6,34 +6,35 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import vn.edu.huflit.foozie_app.adapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mbottomNavigationView;
     private ViewPager mviewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mbottomNavigationView=findViewById(R.id.bottom_nav);
-        mviewPager=findViewById(R.id.view_pager);
+        mbottomNavigationView = findViewById(R.id.bottom_nav);
+        mviewPager = findViewById(R.id.view_pager);
         setUpViewPager();
-        mbottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        mbottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
                     case R.id.action_home:
                         mviewPager.setCurrentItem(0);
                         break;
                     case R.id.action_activity:
                         mviewPager.setCurrentItem(1);
                         break;
-                    case R.id.action_payment:
+                    case R.id.action_notifications:
                         mviewPager.setCurrentItem(2);
                         break;
                     case R.id.action_gift:
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         mviewPager.setCurrentItem(4);
                         break;
                 }
+                return true;
             }
         });
     }
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         mbottomNavigationView.getMenu().findItem(R.id.action_home).setChecked(true);
                         break;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         mbottomNavigationView.getMenu().findItem(R.id.action_activity).setChecked(true);
                         break;
                     case 2:
-                        mbottomNavigationView.getMenu().findItem(R.id.action_payment).setChecked(true);
+                        mbottomNavigationView.getMenu().findItem(R.id.action_notifications).setChecked(true);
                         break;
                     case 3:
                         mbottomNavigationView.getMenu().findItem(R.id.action_gift).setChecked(true);

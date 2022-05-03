@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Food extends BaseDTO {
+public class  Food extends BaseDTO implements Serializable {
     @SerializedName("name")
     public String name;
     @SerializedName("description")

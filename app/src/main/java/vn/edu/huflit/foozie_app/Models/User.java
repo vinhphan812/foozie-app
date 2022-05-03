@@ -27,7 +27,6 @@ public class User extends BaseDTO {
     public String created_at;
     @SerializedName("updated_at")
     public String updated_at;
-
     @NonNull
     @Override
     public String toString() {

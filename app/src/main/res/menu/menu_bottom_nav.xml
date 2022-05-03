@@ -9,9 +9,9 @@
         android:title="@string/action_activity"
         android:icon="@drawable/activity"/>
     <item
-        android:id="@+id/action_payment"
-        android:title="@string/action_payment"
-        android:icon="@drawable/payment"/>
+        android:id="@+id/action_notifications"
+        android:title="@string/action_notifications"
+        android:icon="@drawable/notifications"/>
     <item
         android:id="@+id/action_gift"
         android:title="@string/action_gift"

@@ -1,12 +1,13 @@
 package vn.edu.huflit.foozie_app;
 
 public class intro_item {
-    String Title,Description;
+    String Title, Description;
     int Poster;
-    public intro_item(String title,String description,int poster){
-        Title=title;
-        Description=description;
-        Poster=poster;
+
+    public intro_item(String title, String description, int poster) {
+        Title = title;
+        Description = description;
+        Poster = poster;
     }
 
     public void setTitle(String title) {
@@ -18,16 +19,18 @@ public class intro_item {
     }
 
     public void setPoster(int poster) {
-         Poster = poster;
+        Poster = poster;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return Title;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return Description;
     }
-    public int getPoster(){
+
+    public int getPoster() {
         return Poster;
     }
 }
