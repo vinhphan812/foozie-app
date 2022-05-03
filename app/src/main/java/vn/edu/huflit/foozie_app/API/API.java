@@ -11,9 +11,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
@@ -61,12 +63,14 @@ public class API {
                 return cookies != null ? cookies : new ArrayList<Cookie>();
             }
 
-            public void clearCookie(){
+            public void clearCookie() {
                 cookieStore = new HashMap<>();
             }
         };
         client = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
+                .cookieJar(cookieJar).connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
     //endregion
@@ -137,6 +141,7 @@ public class API {
             throw e;
         }
     }
+
     public String Logout() {
         ResponseDTO res = requestServer("/auth/logout");
         return res.message;

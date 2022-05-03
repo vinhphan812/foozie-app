@@ -2,10 +2,11 @@ package vn.edu.huflit.foozie_app.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Voucher extends BaseDTO {
+public class Voucher extends BaseDTO implements Serializable {
     @SerializedName("name")
     public String name;
     @SerializedName("icon")
