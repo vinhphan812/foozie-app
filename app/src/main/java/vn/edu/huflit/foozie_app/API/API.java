@@ -243,7 +243,11 @@ public class API {
 
     //region Public
     public List<Food> getFoods() throws Exception {
-        ResponseDTO res = requestServer("/api/foods");
+        return getFoods(null);
+    }
+
+    public List<Food> getFoods(String typeId) throws Exception {
+        ResponseDTO res = requestServer("/api/foods" + typeId == null ? "" : "type=" + typeId);
 
         res.isInvalid();
 
