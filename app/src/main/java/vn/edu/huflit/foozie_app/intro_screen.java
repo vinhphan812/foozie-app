@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.huflit.foozie_app.Models.intro_item;
 import vn.edu.huflit.foozie_app.adapter.IntroViewPagerAdapter;
 
 public class intro_screen extends AppCompatActivity {

@@ -110,7 +110,7 @@ public class usernme_password_Fragment extends Fragment {
             }
             try {
                 Utilities.api.SignUp(Username, Password, Firstname, Lastname, Email, Phone);
-                Intent intent = new Intent(view.getContext(), activity_signin.class);
+                Intent intent = new Intent(getContext(), activity_signin.class);
                 startActivity(intent);
             } catch (Exception e) {
                 Utilities.alert(v, e.getMessage());

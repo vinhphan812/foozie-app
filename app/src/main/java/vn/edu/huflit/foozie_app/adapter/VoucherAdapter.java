@@ -42,7 +42,6 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolderVoucher holder, int position) {
         Voucher voucher = mvouchers.get(position);
         ViewHolderVoucher viewHolderVoucher = (ViewHolderVoucher) holder;
-        //icon
         viewHolderVoucher.tvNameVoucher.setText(voucher.name);
         viewHolderVoucher.tvCodeVoucher.setText(voucher.code);
         viewHolderVoucher.tvDateVoucher.setText(voucher.valid_date.toString());
