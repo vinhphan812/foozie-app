@@ -11,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -39,6 +38,7 @@ public class API {
     enum ChangeType {
         INCREASEMENT, DECREASEMENT
     }
+
     // region Property
     public static String HOST;
     private final OkHttpClient client;
@@ -242,12 +242,8 @@ public class API {
     //endregion
 
     //region Public
-    public List<Food> getFoods() throws Exception {
-        return getFoods(null);
-    }
-
-    public List<Food> getFoods(String typeId) throws Exception {
-        ResponseDTO res = requestServer("/api/foods" + typeId == null ? "" : "type=" + typeId);
+    public List<Food> getFoods(String typeId, String query) throws Exception {
+        ResponseDTO res = requestServer("/api/foods?" + (typeId == null ? "" : "type=" + typeId) + (query == null ? "" : (typeId == null ? "" : "&") + "query=" + query));
 
         res.isInvalid();
 

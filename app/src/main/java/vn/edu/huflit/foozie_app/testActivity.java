@@ -37,7 +37,7 @@ public class testActivity extends AppCompatActivity {
             //endregion
 
             //region Public
-            Log.d("Foods", api.getFoods().size() + "");
+            Log.d("Foods", api.getFoods(null, null).size() + "");
             Log.d("FoodType", api.getFoodTypes().size() + "");
             Log.d("Branches", api.getBranches().size() + "");
             Log.d("Food_62263546c44f38a0f56e7360", api.getFood("62263546c44f38a0f56e7360").toString());

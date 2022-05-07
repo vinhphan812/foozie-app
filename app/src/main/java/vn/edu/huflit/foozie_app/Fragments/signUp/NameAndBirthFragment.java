@@ -1,17 +1,16 @@
 package vn.edu.huflit.foozie_app.Fragments.signUp;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -20,10 +19,10 @@ import vn.edu.huflit.foozie_app.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link name_birthday_Fragment#newInstance} factory method to
+ * Use the {@link NameAndBirthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class name_birthday_Fragment extends Fragment {
+public class NameAndBirthFragment extends Fragment {
     Button btnNext;
     NavController navController;
     TextInputLayout firstName, lastName;
@@ -36,7 +35,7 @@ public class name_birthday_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public name_birthday_Fragment() {
+    public NameAndBirthFragment() {
         // Required empty public constructor
     }
 
@@ -49,8 +48,8 @@ public class name_birthday_Fragment extends Fragment {
      * @return A new instance of fragment name_birthday_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static name_birthday_Fragment newInstance(String param1, String param2) {
-        name_birthday_Fragment fragment = new name_birthday_Fragment();
+    public static NameAndBirthFragment newInstance(String param1, String param2) {
+        NameAndBirthFragment fragment = new NameAndBirthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

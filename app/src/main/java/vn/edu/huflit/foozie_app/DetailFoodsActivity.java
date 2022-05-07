@@ -1,16 +1,15 @@
 package vn.edu.huflit.foozie_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import vn.edu.huflit.foozie_app.API.ImageAPI;
 import vn.edu.huflit.foozie_app.Models.Food;
-import vn.edu.huflit.foozie_app.Models.Voucher;
 
 public class DetailFoodsActivity extends AppCompatActivity {
     TextView name, price, description, code;

@@ -38,16 +38,16 @@
             android:name=".verifyAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_signup"
+            android:name=".SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".activity_signin"
+            android:name=".SignInActivity"
             android:exported="true" />
         <activity
-            android:name=".intro_screen"
+            android:name=".IntroActivity"
             android:exported="true" />
         <activity
-            android:name=".splash_screen"
+            android:name=".SplashActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

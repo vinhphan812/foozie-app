@@ -1,5 +1,6 @@
 package vn.edu.huflit.foozie_app.Adapters;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,14 @@ import vn.edu.huflit.foozie_app.R;
 public class TypeFoodAdapter extends RecyclerView.Adapter<TypeFoodAdapter.ViewHolderTypeFood> {
     private List<FoodType> mtype;
     private TypeFoodAdapter.Listener mlistener;
+    public String selected;
 
     public interface Listener {
         void onClick(FoodType typeItem);
     }
 
     public TypeFoodAdapter(List<FoodType> mtype, Listener mlistener) {
+        this.selected = mtype.get(0).id;
         this.mtype = mtype;
         this.mlistener = mlistener;
     }
@@ -36,11 +39,12 @@ public class TypeFoodAdapter extends RecyclerView.Adapter<TypeFoodAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolderTypeFood holder, int position) {
         FoodType foodType = mtype.get(position);
-        ViewHolderTypeFood viewHolderTypeFood = (ViewHolderTypeFood) holder;
-        viewHolderTypeFood.tvFoodType.setText(foodType.name);
-        viewHolderTypeFood.itemView.setOnClickListener(new View.OnClickListener() {
+
+        holder.tvFoodType.setText(foodType.name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                holder.tvFoodType.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 mlistener.onClick(foodType);
             }
         });

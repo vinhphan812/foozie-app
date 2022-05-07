@@ -1,22 +1,20 @@
 package vn.edu.huflit.foozie_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
 
 public class DetailsFoodTypeActivity extends AppCompatActivity {
     RecyclerView rvFoodTypeDetail;
     TextView name;
     ImageView btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +43,8 @@ public class DetailsFoodTypeActivity extends AppCompatActivity {
     }
 
     private void bindWidget() {
-        rvFoodTypeDetail=findViewById(R.id.rv_food_type_detail);
-        name=findViewById(R.id.tv_name_food_type_detail);
+        rvFoodTypeDetail = findViewById(R.id.rv_food_type_detail);
+        name = findViewById(R.id.tv_name_food_type_detail);
         btnBack = (ImageView) findViewById(R.id.btn_back_detail);
     }
 }

@@ -1,26 +1,19 @@
 package vn.edu.huflit.foozie_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
-public class activity_signin extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     private CheckBox btnRememberAccount;
     private TextInputLayout Username, Password;
     Button btnSignIn;
@@ -50,7 +43,7 @@ public class activity_signin extends AppCompatActivity {
             }
             try {
                 Utilities.api.Login(username, password);
-                Intent intent = new Intent(activity_signin.this, MainActivity.class);
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
                 Utilities.alert(v, e.getMessage());
@@ -58,12 +51,12 @@ public class activity_signin extends AppCompatActivity {
         });
         //Sign up
         btnSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(activity_signin.this, activity_signup.class);
+            Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
         //Forget password
         btnFotGetPass.setOnClickListener(v -> {
-            Intent intent = new Intent(activity_signin.this, verifyAccountActivity.class);
+            Intent intent = new Intent(SignInActivity.this, verifyAccountActivity.class);
             startActivity(intent);
         });
     }

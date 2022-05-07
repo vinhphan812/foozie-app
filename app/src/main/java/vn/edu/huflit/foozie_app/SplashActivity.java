@@ -11,14 +11,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Collections;
-import java.util.List;
-
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
-public class splash_screen extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
     Animation logoAnim;
     ImageView logo;
@@ -47,7 +42,7 @@ public class splash_screen extends AppCompatActivity {
                     } catch (Exception e) {
                         Log.d("ERROR_THREAD", e.getMessage());
                     } finally {
-                        Intent intent = new Intent(splash_screen.this, activity_signin.class);
+                        Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
                         startActivity(intent);
                         finish();
                     }
