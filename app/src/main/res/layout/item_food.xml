@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/layout_bg_item"
+    android:elevation="10dp"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/img_food"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/tv_name_food"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="TextView"
+        android:textColor="#243665"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_food"
+        app:layout_constraintTop_toTopOf="@+id/img_food" />
+
+    <TextView
+        android:id="@+id/tv_price_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="TextView"
+        android:textColor="#243665"
+        app:layout_constraintBottom_toBottomOf="@+id/img_food"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name_food" />
+
+    <TextView
+        android:id="@+id/tv_code_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="TextView"
+        android:textColor="#243665"
+        app:layout_constraintBottom_toBottomOf="@+id/img_food"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_food" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package vn.edu.huflit.foozie_app;
+package vn.edu.huflit.foozie_app.Models;
 
 public class intro_item {
     String Title, Description;

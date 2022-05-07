@@ -1,22 +1,37 @@
 package vn.edu.huflit.foozie_app.Fragments.homepage;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+
+import okhttp3.internal.cache.DiskLruCache;
+import vn.edu.huflit.foozie_app.API.ImageAPI;
+import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 import vn.edu.huflit.foozie_app.activity_signin;
+import vn.edu.huflit.foozie_app.verifyAccountActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,9 +39,10 @@ import vn.edu.huflit.foozie_app.activity_signin;
  * create an instance of this fragment.
  */
 public class AccountFragment extends Fragment {
-    Button btnLogOut;
-    TextView Name, Email, Phone, Date;
-    User user;
+    User newUser;
+    TextView fullName, phone, email;
+    ImageView rank;
+    ConstraintLayout btnChangePass, btnLogOut, btnEdit;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -77,25 +93,53 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnLogOut = (Button) view.findViewById(R.id.btn_log_out);
-        Name = view.findViewById(R.id.tv_name_user);
-        Email = view.findViewById(R.id.tv_email_user);
-        Phone = view.findViewById(R.id.tv_phone_user);
-        Date = view.findViewById(R.id.tv_join_date_user);
+        fullName = (TextView) view.findViewById(R.id.tv_full_name_user);
+        phone = (TextView) view.findViewById(R.id.tv_phone_user);
+        email = (TextView) view.findViewById(R.id.tv_email_user);
+        rank = (ImageView) view.findViewById(R.id.img_rank_user);
         try {
-            user = Utilities.api.getMe();
-            Name.setText(user.first_name + " " + user.last_name);
-            Email.setText(user.email);
-            Phone.setText(user.phone);
-            Date.setText(user.created_at);
-
+            newUser = Utilities.api.getMe();
+            fullName.setText(newUser.first_name + ' ' + newUser.last_name);
+            phone.setText(newUser.phone);
+            email.setText(newUser.email);
+//            ImageAPI.loadBackground(newUser.ranking);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        btnLogOut.setOnClickListener(v -> {
-            Utilities.api.Logout();
-            Intent intent = new Intent(view.getContext(), activity_signin.class);
+
+        //change pass
+        btnChangePass = (ConstraintLayout) view.findViewById(R.id.btn_change_pass);
+        btnChangePass.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), verifyAccountActivity.class);
             startActivity(intent);
         });
+        //log out
+        btnLogOut = (ConstraintLayout) view.findViewById(R.id.btn_log_out);
+        btnLogOut.setOnClickListener(v -> {
+            Utilities.api.Logout();
+            Intent intentLogOut = new Intent(v.getContext(), activity_signin.class);
+            startActivity(intentLogOut);
+        });
+        //edit
+        btnEdit = (ConstraintLayout) view.findViewById(R.id.btn_edit);
+        btnEdit.setOnClickListener(v -> {
+            showChangePasswordDialog();
+        });
+    }
+
+    private void showChangePasswordDialog() {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_edit, null);
+        TextInputLayout edtFullName, edtPhone, edtEmail;
+        Button btnUpdateInfo;
+        edtFullName =(TextInputLayout) view.findViewById(R.id.edt_full_name);
+        edtPhone =(TextInputLayout) view.findViewById(R.id.edt_phone);
+        edtEmail = view.findViewById(R.id.edt_email);
+        btnUpdateInfo =(Button) view.findViewById(R.id.btn_edit);
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_edit);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
     }
 }
