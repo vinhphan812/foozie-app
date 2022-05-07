@@ -18,10 +18,10 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.huflit.foozie_app.Adapters.IntroViewPagerAdapter;
 import vn.edu.huflit.foozie_app.Models.intro_item;
-import vn.edu.huflit.foozie_app.adapter.IntroViewPagerAdapter;
 
-public class intro_screen extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
     private ViewPager introPager;
     IntroViewPagerAdapter introViewPagerAdapter;
     TabLayout tabIndicator;
@@ -38,7 +38,7 @@ public class intro_screen extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         if (restorePrefData()) {
-            Intent loginActivity = new Intent(getApplicationContext(), activity_signin.class);
+            Intent loginActivity = new Intent(getApplicationContext(), SignInActivity.class);
             startActivity(loginActivity);
             finish();
         }
@@ -97,7 +97,7 @@ public class intro_screen extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent login_screen = new Intent(getApplicationContext(), activity_signin.class);
+                Intent login_screen = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(login_screen);
                 savePrefsData();
                 finish();

@@ -4,14 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +13,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.textfield.TextInputLayout;
 
-import okhttp3.internal.cache.DiskLruCache;
-import vn.edu.huflit.foozie_app.API.ImageAPI;
-import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
-import vn.edu.huflit.foozie_app.activity_signin;
+import vn.edu.huflit.foozie_app.SignInActivity;
 import vn.edu.huflit.foozie_app.verifyAccountActivity;
 
 /**
@@ -117,7 +110,7 @@ public class AccountFragment extends Fragment {
         btnLogOut = (ConstraintLayout) view.findViewById(R.id.btn_log_out);
         btnLogOut.setOnClickListener(v -> {
             Utilities.api.Logout();
-            Intent intentLogOut = new Intent(v.getContext(), activity_signin.class);
+            Intent intentLogOut = new Intent(v.getContext(), SignInActivity.class);
             startActivity(intentLogOut);
         });
         //edit
@@ -131,10 +124,10 @@ public class AccountFragment extends Fragment {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_edit, null);
         TextInputLayout edtFullName, edtPhone, edtEmail;
         Button btnUpdateInfo;
-        edtFullName =(TextInputLayout) view.findViewById(R.id.edt_full_name);
-        edtPhone =(TextInputLayout) view.findViewById(R.id.edt_phone);
+        edtFullName = (TextInputLayout) view.findViewById(R.id.edt_full_name);
+        edtPhone = (TextInputLayout) view.findViewById(R.id.edt_phone);
         edtEmail = view.findViewById(R.id.edt_email);
-        btnUpdateInfo =(Button) view.findViewById(R.id.btn_edit);
+        btnUpdateInfo = (Button) view.findViewById(R.id.btn_edit);
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_edit);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

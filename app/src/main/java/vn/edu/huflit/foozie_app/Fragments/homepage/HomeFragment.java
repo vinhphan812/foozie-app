@@ -2,42 +2,42 @@ package vn.edu.huflit.foozie_app.Fragments.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import java.util.List;
 
+import vn.edu.huflit.foozie_app.Adapters.FoodAdapter;
+import vn.edu.huflit.foozie_app.Adapters.TypeFoodAdapter;
 import vn.edu.huflit.foozie_app.DetailFoodsActivity;
-import vn.edu.huflit.foozie_app.DetailsFoodTypeActivity;
 import vn.edu.huflit.foozie_app.LocationActivity;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
-import vn.edu.huflit.foozie_app.adapter.FoodAdapter;
-import vn.edu.huflit.foozie_app.adapter.TypeFoodAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener,FoodAdapter.Listener {
-    RecyclerView rvTypeFood,rvFood;
+public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, FoodAdapter.Listener {
+    RecyclerView rvTypeFood, rvFood;
     TypeFoodAdapter typeFoodAdapter;
     FoodAdapter foodAdapter;
     List<FoodType> foodTypes;
     List<Food> foods;
     ConstraintLayout btnLocation;
+    SearchView searchView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +90,8 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener,F
         super.onViewCreated(view, savedInstanceState);
         //type_food
         rvTypeFood = view.findViewById(R.id.rv_food_type);
+        searchView = view.findViewById(R.id.searchView);
+
         try {
             foodTypes = Utilities.api.getFoodTypes();
             typeFoodAdapter = new TypeFoodAdapter(foodTypes, this);
@@ -100,9 +102,9 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener,F
             e.printStackTrace();
         }
         //food
-        rvFood=view.findViewById(R.id.rv_food);
+        rvFood = view.findViewById(R.id.rv_food);
         try {
-            foods=Utilities.api.getFoods();
+            foods = Utilities.api.getFoods(null, null);
             foodAdapter = new FoodAdapter(foods, this);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
             rvFood.setLayoutManager(linearLayoutManager);
@@ -111,23 +113,47 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener,F
             e.printStackTrace();
         }
         //location
-        btnLocation=(ConstraintLayout) view.findViewById(R.id.btn_location);
+        btnLocation = (ConstraintLayout) view.findViewById(R.id.btn_location);
         btnLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(view.getContext(), LocationActivity.class);
+                Intent intent = new Intent(view.getContext(), LocationActivity.class);
                 startActivity(intent);
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                try {
+                    foodAdapter.mfoods = Utilities.api.getFoods(typeFoodAdapter.selected, query);
+                    foodAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    Utilities.alert(getView(), e.getMessage(), Utilities.AlertType.Error);
+                }
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
     }
 
     @Override
-    public void onClick(FoodType typeItem) {
-        Intent intent = new Intent(getContext(), DetailsFoodTypeActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("typeItem", typeItem);
-        intent.putExtras(bundle);
-        startActivity(intent);
+    public void onClick(FoodType foodType) {
+        try {
+            foodAdapter.mfoods = Utilities.api.getFoods(foodType.id, null);
+            foodAdapter.selected = foodType.id;
+            typeFoodAdapter.notifyDataSetChanged();
+            foodAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            Utilities.alert(getView(), e.getMessage(), Utilities.AlertType.Error);
+
+        }
+
     }
 
     @Override
