@@ -13,7 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.R;
-import vn.edu.huflit.foozie_app.intro_item;
+import vn.edu.huflit.foozie_app.Models.intro_item;
 
 public class IntroViewPagerAdapter extends PagerAdapter {
 

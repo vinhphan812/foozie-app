@@ -9,16 +9,6 @@
 
 
     <ImageView
-        android:id="@+id/img_cover"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,16 +125,18 @@
 
     <TextView
         android:id="@+id/tv_description_voucher_item"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/roboto_medium"
         android:text="Mô tả:"
         android:textColor="#243665"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
         android:id="@+id/btn_use_voucher"
@@ -154,7 +146,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="#243665"
-        android:text="Sử dụng"
+        android:text="Sao chép mã"
         app:cornerRadius="10dp"
         android:elevation="30dp"
         app:layout_constraintBottom_toBottomOf="parent"

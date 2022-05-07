@@ -2,6 +2,7 @@ package vn.edu.huflit.foozie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -33,25 +34,28 @@ public class splash_screen extends AppCompatActivity {
         //Hooks
         logo = findViewById(R.id.logo);
         logo.setAnimation(logoAnim);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Thread LoadDataThread = new Thread(() -> {
+                    try {
+                        // get from resource String
+                        final String API_URL = getResources().getString(R.string.api_url);
+                        // init app
+                        Utilities.init(API_URL);
 
-        Thread LoadDataThread = new Thread(() -> {
-            try {
-                // get from resource String
-                final String API_URL = getResources().getString(R.string.api_url);
-
-                // init app
-                Utilities.init(API_URL);
-
-            } catch (Exception e) {
-                Log.d("ERROR_THREAD", e.getMessage());
-            } finally {
-                Intent intent = new Intent(splash_screen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                    } catch (Exception e) {
+                        Log.d("ERROR_THREAD", e.getMessage());
+                    } finally {
+                        Intent intent = new Intent(splash_screen.this, activity_signin.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                LoadDataThread.start();
             }
-        });
-
+        }, SPLASH_SCREEN);
         // start thread loading
-        LoadDataThread.start();
+
     }
 }
