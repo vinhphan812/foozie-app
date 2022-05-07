@@ -17,7 +17,6 @@ import vn.edu.huflit.foozie_app.R;
 
 public class FoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public List<Food> mfoods;
-    public String selected;
     private Listener mlistener;
 
     public FoodAdapter(List<Food> foods, Listener listener) {
