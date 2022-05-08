@@ -1,6 +1,7 @@
 package vn.edu.huflit.foozie_app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -8,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import vn.edu.huflit.foozie_app.Adapters.ViewPagerAdapter;
 
@@ -24,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         mbottomNavigationView = findViewById(R.id.bottom_nav);
         mviewPager = findViewById(R.id.view_pager);
         setUpViewPager();
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if(!task.isSuccessful()) Log.d("ERROR", task.getException().getMessage());
+
+                Log.d("FCM_TOKEN", task.getResult());
+            }
+        });
+
         mbottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

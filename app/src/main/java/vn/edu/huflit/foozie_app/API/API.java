@@ -1,16 +1,19 @@
 package vn.edu.huflit.foozie_app.API;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -33,6 +36,7 @@ import vn.edu.huflit.foozie_app.Models.Order;
 import vn.edu.huflit.foozie_app.Models.ResponseDTO;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Models.Voucher;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class API {
     enum ChangeType {
@@ -43,21 +47,31 @@ public class API {
     public static String HOST;
     private final OkHttpClient client;
 
-    CookieJar cookieJar;
+    public CookieJar cookieJar;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     final private Gson gson = new Gson();
+
+    HashMap<String, List<Cookie>> cookieStore;
     // endregion
 
     //region Constructor
-    public API() {
-        cookieJar = new CookieJar() {
-            public HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+    public void init(String cookie) {
+        if(!cookie.isEmpty()) {
+            HttpUrl url = HttpUrl.parse(HOST);
+            cookieStore.put(url.host(), Collections.singletonList(Cookie.parse(url, cookie)));
+        }
+    }
 
+    public API() {
+        cookieStore = new HashMap<String, List<Cookie>>();
+        cookieJar = new CookieJar() {
             @Override
             public void saveFromResponse(HttpUrl url, @NonNull List<Cookie> cookies) {
                 cookieStore.put(url.host(), cookies);
+                Log.d("COOKIES", cookies.get(0).toString());
+                Utilities.store.edit().putString("cookie", cookies.get(0).toString()).commit();
             }
 
             @Override
@@ -70,6 +84,7 @@ public class API {
                 cookieStore = new HashMap<>();
             }
         };
+
         client = new OkHttpClient.Builder()
                 .cookieJar(cookieJar).connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
@@ -122,6 +137,16 @@ public class API {
         res.isInvalid();
 
         return res.message;
+    }
+
+    public Boolean validAccount(){
+        try {
+            this.getMe();
+            return true;
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
     public String SignUp(String username, String password, String first_name, String last_name, String email, String phone) throws Exception {
@@ -322,6 +347,10 @@ public class API {
         return gson.fromJson(gson.toJson(res.data), listType);
     }
     //endregion
+
+    // region Others
+
+    // endregion
 
     // endregion
 

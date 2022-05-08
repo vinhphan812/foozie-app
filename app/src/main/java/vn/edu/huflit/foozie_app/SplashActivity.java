@@ -1,8 +1,9 @@
 package vn.edu.huflit.foozie_app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -17,6 +18,8 @@ public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
     Animation logoAnim;
     ImageView logo;
+    Boolean isHaveAccount = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +32,43 @@ public class SplashActivity extends AppCompatActivity {
         //Hooks
         logo = findViewById(R.id.logo);
         logo.setAnimation(logoAnim);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Thread LoadDataThread = new Thread(() -> {
-                    try {
-                        // get from resource String
-                        final String API_URL = getResources().getString(R.string.api_url);
-                        // init app
-                        Utilities.init(API_URL);
 
-                    } catch (Exception e) {
-                        Log.d("ERROR_THREAD", e.getMessage());
-                    } finally {
-                        Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-                LoadDataThread.start();
+
+        SharedPreferences store = this.getSharedPreferences(String.valueOf(R.string.localStoreName), Context.MODE_PRIVATE);
+
+        Thread LoadDataThread = new Thread(() -> {
+            try {
+                // get from resource String
+                final String API_URL = getResources().getString(R.string.api_url);
+                // init app
+                Utilities.init(API_URL, store);
+
+                String FCM = store.getString("FCM", "");
+
+                if (FCM.isEmpty()) {
+                    FCM = Utilities.getFCMToken();
+                }
+
+                isHaveAccount = Utilities.api.validAccount();
+
+                SharedPreferences.Editor editor = store.edit();
+
+                editor.putString("FCM", FCM);
+
+                editor.commit();
+            } catch (Exception e) {
+                Log.d("ERROR_THREAD", e.getMessage());
+            } finally {
+
+
+                Intent intent = new Intent(SplashActivity.this, isHaveAccount ? MainActivity.class : SignInActivity.class);
+                startActivity(intent);
+                finish();
             }
-        }, SPLASH_SCREEN);
-        // start thread loading
+        });
+
+        // start thread
+        LoadDataThread.start();
 
     }
 }

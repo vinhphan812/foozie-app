@@ -1,5 +1,7 @@
 package vn.edu.huflit.foozie_app;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -21,7 +23,9 @@ public class testActivity extends AppCompatActivity {
 
         image = findViewById(R.id.testImageView);
 
-        Utilities.init(getResources().getString(R.string.api_url));
+        SharedPreferences sharedPref = this.getSharedPreferences(String.valueOf(R.string.localStoreName), Context.MODE_PRIVATE);
+
+        Utilities.init(getResources().getString(R.string.api_url), sharedPref);
 
         API api = Utilities.api;
 
