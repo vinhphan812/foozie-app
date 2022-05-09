@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,7 +92,7 @@ public class PhoneAndAddressFragment extends Fragment {
                 String Phone = phone.getEditText().getText().toString();
                 String Email = email.getEditText().getText().toString();
                 if (Phone.isEmpty()) {
-                    Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                     return;
                 } else {
                     bundle.putString("first_name", Firstname);

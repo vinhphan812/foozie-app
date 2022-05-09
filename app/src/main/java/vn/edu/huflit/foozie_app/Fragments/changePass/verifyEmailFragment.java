@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,18 +80,15 @@ public class verifyEmailFragment extends Fragment {
         btnNext = (Button) view.findViewById(R.id.btn_next_verify);
         navController = Navigation.findNavController(view);
         TextInputLayout Email = view.findViewById(R.id.edt_email_verify);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = Email.getEditText().getText().toString();
-                if (email.isEmpty()) {
-                    Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
-                    return;
-                } else {
-                    bundle.putString("email", email);
-                }
-                navController.navigate(R.id.action_typeEmailFragment_to_changePasswordFragment, bundle);
+        btnNext.setOnClickListener(v -> {
+            String email = Email.getEditText().getText().toString();
+            if (email.isEmpty()) {
+                Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
+                return;
+            } else {
+                bundle.putString("email", email);
             }
+            navController.navigate(R.id.action_typeEmailFragment_to_changePasswordFragment, bundle);
         });
     }
 }

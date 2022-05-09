@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import vn.edu.huflit.foozie_app.R;
 
@@ -15,6 +18,8 @@ import vn.edu.huflit.foozie_app.R;
  * create an instance of this fragment.
  */
 public class NotificationsFragment extends Fragment {
+
+    private RecyclerView rvNotification;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +59,12 @@ public class NotificationsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        rvNotification = view.findViewById(R.id.rv_notification);
     }
 
     @Override

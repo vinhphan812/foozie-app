@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,7 +89,7 @@ public class NameAndBirthFragment extends Fragment {
                 String LastName = lastName.getEditText().getText().toString();
 
                 if (FirstName.isEmpty() || LastName.isEmpty()) {
-                    Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                     return;
                 } else {
                     bundle.putString("first_name", FirstName);

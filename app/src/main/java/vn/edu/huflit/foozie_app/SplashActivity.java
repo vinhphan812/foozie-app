@@ -43,17 +43,17 @@ public class SplashActivity extends AppCompatActivity {
                 // init app
                 Utilities.init(API_URL, store);
 
-                String FCM = store.getString("FCM", "");
+                Utilities.FCM = store.getString("FCM", "");
 
-                if (FCM.isEmpty()) {
-                    FCM = Utilities.getFCMToken();
+                if (Utilities.FCM.isEmpty()) {
+                    Utilities.getFCMToken();
                 }
 
                 isHaveAccount = Utilities.api.validAccount();
 
                 SharedPreferences.Editor editor = store.edit();
 
-                editor.putString("FCM", FCM);
+                editor.putString("FCM", Utilities.FCM);
 
                 editor.commit();
             } catch (Exception e) {

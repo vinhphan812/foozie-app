@@ -254,13 +254,16 @@ public class API {
     }
 
 
-    public String takeVoucher(String id) {
+    public String takeVoucher(String id) throws Exception {
         HashMap map = new HashMap();
         map.put("id", id);
+        map.put("token", Utilities.FCM);
 
         String jsonBody = gson.toJson(map);
 
         ResponseDTO res = requestServer("/api/user/take-voucher", RequestBody.create(JSON, jsonBody));
+
+        res.isInvalid();
 
         return res.message;
     }

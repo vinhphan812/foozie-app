@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.Adapters.VoucherAdapter;
@@ -29,6 +30,8 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.Listener
     RecyclerView rvVouchers;
     VoucherAdapter voucherAdapter;
     List<Voucher> vouchers;
+    View root;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,15 +82,26 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.Listener
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        root = view;
         rvVouchers = view.findViewById(R.id.rv_voucher);
+
+        vouchers = new ArrayList<>();
+
+        voucherAdapter = new VoucherAdapter(vouchers, this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rvVouchers.setLayoutManager(linearLayoutManager);
+        rvVouchers.setAdapter(voucherAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         try {
             vouchers = Utilities.api.getVoucherPublic();
-            voucherAdapter = new VoucherAdapter(vouchers, this);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-            rvVouchers.setLayoutManager(linearLayoutManager);
-            rvVouchers.setAdapter(voucherAdapter);
+            voucherAdapter.list = vouchers;
+            voucherAdapter.notifyDataSetChanged();
         } catch (Exception e) {
-            e.printStackTrace();
+            Utilities.alert(root, e.getMessage(), Utilities.AlertType.Error);
         }
     }
 
@@ -96,6 +110,7 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.Listener
         Intent intent = new Intent(getContext(), DetailVoucherActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("item", item);
+        bundle.putString("id", item.id);
         intent.putExtras(bundle);
         startActivity(intent);
     }

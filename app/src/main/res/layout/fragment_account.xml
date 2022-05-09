@@ -13,7 +13,7 @@
         android:id="@+id/img_avatar"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:elevation="10dp"
         android:src="@drawable/avatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +33,10 @@
 
     <TextView
         android:id="@+id/tv_full_name_user"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/roboto_black"
         android:text="TextView"
@@ -49,11 +49,9 @@
 
     <TextView
         android:id="@+id/tv_email_user"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_medium"
         android:text="TextView"
         android:textAlignment="center"
@@ -65,7 +63,7 @@
 
     <TextView
         android:id="@+id/tv_phone_user"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -287,58 +285,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_view_intro"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/layout_bg_item"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_change_pass">
-
-        <ImageView
-            android:id="@+id/imt_view_intro"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:elevation="10dp"
-            android:src="@drawable/baseline_extension_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Sơ lược về ứng dụng"
-            android:textColor="#243665"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imt_view_intro"
-            app:layout_constraintStart_toEndOf="@+id/imt_view_intro"
-            app:layout_constraintTop_toTopOf="@+id/imt_view_intro" />
-
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/next_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_log_out"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -349,7 +295,7 @@
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_view_intro">
+        app:layout_constraintTop_toBottomOf="@+id/btn_change_pass">
 
         <ImageView
             android:id="@+id/imt_log_out"

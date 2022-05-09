@@ -22,8 +22,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.R;
-import vn.edu.huflit.foozie_app.Utils.Utilities;
 import vn.edu.huflit.foozie_app.SignInActivity;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 import vn.edu.huflit.foozie_app.verifyAccountActivity;
 
 /**

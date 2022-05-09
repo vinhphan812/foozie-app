@@ -147,6 +147,7 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
         try {
             foodAdapter.mfoods = Utilities.api.getFoods(foodType.id, null);
             foodAdapter.selected = foodType.id;
+
             typeFoodAdapter.notifyDataSetChanged();
             foodAdapter.notifyDataSetChanged();
         } catch (Exception e) {

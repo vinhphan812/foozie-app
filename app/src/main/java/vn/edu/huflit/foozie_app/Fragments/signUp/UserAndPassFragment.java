@@ -93,15 +93,15 @@ public class UserAndPassFragment extends Fragment {
             String Password = password.getEditText().getText().toString();
             String Confirm = confirm.getEditText().getText().toString();
             if (Username.isEmpty() || Password.isEmpty() || Confirm.isEmpty()) {
-                Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                 return;
             }
             if (!Confirm.equals(Password)) {
-                Snackbar.make(view, "Mật khẩu không trùng khớp!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Mật khẩu không trùng khớp!", Utilities.AlertType.Error);
                 return;
             }
             if (Password.length() < 8) {
-                Snackbar.make(view, "Vui lòng nhập mật khẩu 8 ký tự!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
                 return;
             }
             try {

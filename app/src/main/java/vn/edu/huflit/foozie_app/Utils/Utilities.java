@@ -16,6 +16,8 @@ public class Utilities {
         Error, Info, Success
     }
 
+    static public String FCM;
+
     static public SharedPreferences store;
     static public FirebaseMessaging fmessage = FirebaseMessaging.getInstance();
 
@@ -57,8 +59,8 @@ public class Utilities {
 
         while (!task.isComplete()) {
         }
-
-        return task.getResult();
+        FCM = task.getResult();
+        return FCM;
     }
 
 }

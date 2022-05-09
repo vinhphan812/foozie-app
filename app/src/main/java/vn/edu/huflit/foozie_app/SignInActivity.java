@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.Utils.Utilities;
@@ -34,11 +33,7 @@ public class SignInActivity extends AppCompatActivity {
             String username = Username.getEditText().getText().toString();
             String password = Password.getEditText().getText().toString();
             if (username.isEmpty() || password.isEmpty()) {
-                Snackbar.make(v, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-            if (password.length() < 8) {
-                Snackbar.make(v, "Mật khẩu phải trên 8 ký tự", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(v, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Info);
                 return;
             }
             try {
@@ -46,7 +41,7 @@ public class SignInActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Utilities.alert(v, e.getMessage());
+                Utilities.alert(v, e.getMessage(), Utilities.AlertType.Error);
             }
         });
         //Sign up
