@@ -1,26 +1,18 @@
 package vn.edu.huflit.foozie_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
 
-import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
-public class activity_signin extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     private CheckBox btnRememberAccount;
     private TextInputLayout Username, Password;
     Button btnSignIn;
@@ -41,29 +33,25 @@ public class activity_signin extends AppCompatActivity {
             String username = Username.getEditText().getText().toString();
             String password = Password.getEditText().getText().toString();
             if (username.isEmpty() || password.isEmpty()) {
-                Snackbar.make(v, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-            if (password.length() < 8) {
-                Snackbar.make(v, "Mật khẩu phải trên 8 ký tự", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(v, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Info);
                 return;
             }
             try {
                 Utilities.api.Login(username, password);
-                Intent intent = new Intent(activity_signin.this, MainActivity.class);
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Utilities.alert(v, e.getMessage());
+                Utilities.alert(v, e.getMessage(), Utilities.AlertType.Error);
             }
         });
         //Sign up
         btnSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(activity_signin.this, activity_signup.class);
+            Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
         //Forget password
         btnFotGetPass.setOnClickListener(v -> {
-            Intent intent = new Intent(activity_signin.this, verifyAccountActivity.class);
+            Intent intent = new Intent(SignInActivity.this, verifyAccountActivity.class);
             startActivity(intent);
         });
     }

@@ -2,6 +2,10 @@ package vn.edu.huflit.foozie_app.Fragments.signUp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,24 +13,19 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
-import vn.edu.huflit.foozie_app.activity_signin;
+import vn.edu.huflit.foozie_app.SignInActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link usernme_password_Fragment#newInstance} factory method to
+ * Use the {@link UserAndPassFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class usernme_password_Fragment extends Fragment {
+public class UserAndPassFragment extends Fragment {
     Button btnRegister;
     NavController navController;
     TextInputLayout username, password, confirm;
@@ -39,7 +38,7 @@ public class usernme_password_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public usernme_password_Fragment() {
+    public UserAndPassFragment() {
         // Required empty public constructor
     }
 
@@ -52,8 +51,8 @@ public class usernme_password_Fragment extends Fragment {
      * @return A new instance of fragment usernme_password_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static usernme_password_Fragment newInstance(String param1, String param2) {
-        usernme_password_Fragment fragment = new usernme_password_Fragment();
+    public static UserAndPassFragment newInstance(String param1, String param2) {
+        UserAndPassFragment fragment = new UserAndPassFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -94,20 +93,20 @@ public class usernme_password_Fragment extends Fragment {
             String Password = password.getEditText().getText().toString();
             String Confirm = confirm.getEditText().getText().toString();
             if (Username.isEmpty() || Password.isEmpty() || Confirm.isEmpty()) {
-                Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                 return;
             }
             if (!Confirm.equals(Password)) {
-                Snackbar.make(view, "Mật khẩu không trùng khớp!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Mật khẩu không trùng khớp!", Utilities.AlertType.Error);
                 return;
             }
             if (Password.length() < 8) {
-                Snackbar.make(view, "Vui lòng nhập mật khẩu 8 ký tự!", Snackbar.LENGTH_LONG).show();
+                Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
                 return;
             }
             try {
                 Utilities.api.SignUp(Username, Password, Firstname, Lastname, Email, Phone);
-                Intent intent = new Intent(getContext(), activity_signin.class);
+                Intent intent = new Intent(getContext(), SignInActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
                 Utilities.alert(v, e.getMessage());

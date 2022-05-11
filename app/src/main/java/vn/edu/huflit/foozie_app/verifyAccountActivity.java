@@ -1,15 +1,13 @@
 package vn.edu.huflit.foozie_app;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import android.os.Bundle;
-
-import vn.edu.huflit.foozie_app.R;
 
 public class verifyAccountActivity extends AppCompatActivity {
     Toolbar toolbarVerify;

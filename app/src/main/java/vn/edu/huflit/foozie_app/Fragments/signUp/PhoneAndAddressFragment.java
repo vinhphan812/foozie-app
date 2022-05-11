@@ -1,6 +1,11 @@
 package vn.edu.huflit.foozie_app.Fragments.signUp;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,23 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link phone_addressFragment#newInstance} factory method to
+ * Use the {@link PhoneAndAddressFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class phone_addressFragment extends Fragment {
+public class PhoneAndAddressFragment extends Fragment {
     Button btnNext;
     NavController navController;
     TextInputLayout phone, email;
@@ -37,7 +37,7 @@ public class phone_addressFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public phone_addressFragment() {
+    public PhoneAndAddressFragment() {
         // Required empty public constructor
     }
 
@@ -50,8 +50,8 @@ public class phone_addressFragment extends Fragment {
      * @return A new instance of fragment phone_addressFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static phone_addressFragment newInstance(String param1, String param2) {
-        phone_addressFragment fragment = new phone_addressFragment();
+    public static PhoneAndAddressFragment newInstance(String param1, String param2) {
+        PhoneAndAddressFragment fragment = new PhoneAndAddressFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -92,7 +92,7 @@ public class phone_addressFragment extends Fragment {
                 String Phone = phone.getEditText().getText().toString();
                 String Email = email.getEditText().getText().toString();
                 if (Phone.isEmpty()) {
-                    Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                     return;
                 } else {
                     bundle.putString("first_name", Firstname);

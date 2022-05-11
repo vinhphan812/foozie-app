@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F3FA"
-    tools:context=".activity_signin">
+    tools:context=".SignInActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
         android:hint="Tên đăng nhập"
         app:boxStrokeColor="#243665"
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:hint="Mật khẩu"
         app:boxStrokeColor="#243665"
@@ -84,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:buttonTint="#31AFD4"
         android:fontFamily="@font/roboto_medium"
@@ -99,7 +99,7 @@
         android:id="@+id/btn_fotGetPass_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_black"
         android:text="@string/forGetPass"
         android:textColor="#243665"
@@ -124,7 +124,7 @@
         android:id="@+id/btn_sign_up_signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="@string/signUp"
         android:textColor="#243665"
         android:textSize="17dp"

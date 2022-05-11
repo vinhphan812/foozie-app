@@ -2,6 +2,10 @@ package vn.edu.huflit.foozie_app.Fragments.changePass;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,16 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
-import vn.edu.huflit.foozie_app.activity_signin;
+import vn.edu.huflit.foozie_app.SignInActivity;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,18 +89,18 @@ public class changePasswordFragment extends Fragment {
                 String Pass = pass.getEditText().getText().toString();
                 String Confirm = confirm.getEditText().getText().toString();
                 if (Pass.isEmpty() || Confirm.isEmpty()) {
-                    Snackbar.make(view, "Vui lòng nhập đầy đủ thông tin!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                     return;
                 }
                 if (Pass.length() < 10) {
-                    Snackbar.make(view, "Vui lòng nhập mật khẩu 10 ký tự!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Vui lòng nhập mật khẩu 10 ký tự!", Utilities.AlertType.Error);
                     return;
                 }
                 if (!Pass.equals(Confirm)) {
-                    Snackbar.make(view, "Mật khẩu không trùng khớp!", Snackbar.LENGTH_LONG).show();
+                    Utilities.alert(view, "Mật khẩu không trùng khớp!", Utilities.AlertType.Error);
                     return;
                 }
-                Intent intent = new Intent(v.getContext(), activity_signin.class);
+                Intent intent = new Intent(v.getContext(), SignInActivity.class);
                 startActivity(intent);
             }
         });
