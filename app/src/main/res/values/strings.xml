@@ -10,7 +10,7 @@
     <string name="action_acc">Account</string>
 
     <!--  URL HOST OF API  -->
-    <string name="api_url">http://172.16.30.126:3000</string>
+    <string name="api_url">http://95.111.203.4:3000/</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">MapsActivity</string>
