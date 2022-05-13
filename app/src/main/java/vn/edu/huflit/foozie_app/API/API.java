@@ -159,6 +159,7 @@ public class API {
             map.put("last_name", last_name);
             map.put("email", email);
             map.put("phone", phone);
+            map.put("token", Utilities.FCM);
 
             ResponseDTO res = requestServer("/auth/signup", RequestBody.create(JSON, gson.toJson(map)));
 
@@ -237,6 +238,7 @@ public class API {
         map.put("note", note);
         map.put("voucher_ship", voucherShipId);
         map.put("voucher_using", voucherUsingId);
+        map.put("token", Utilities.FCM);
 
         String jsonBody = gson.toJson(map);
 
