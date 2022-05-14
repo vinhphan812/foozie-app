@@ -330,7 +330,7 @@ public class API {
         map.put("type", type);
         String jsonBody = gson.toJson(map);
 
-        ResponseDTO res = requestServer("/api/cart", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/api/user/cart", RequestBody.create(JSON, jsonBody));
 
         return res.message;
     }
