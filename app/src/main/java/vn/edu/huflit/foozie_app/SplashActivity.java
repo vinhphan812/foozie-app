@@ -12,6 +12,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.model.LatLng;
+
+import vn.edu.huflit.foozie_app.Models.Branch;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class SplashActivity extends AppCompatActivity {
@@ -40,6 +43,7 @@ public class SplashActivity extends AppCompatActivity {
             try {
                 // get from resource String
                 final String API_URL = getResources().getString(R.string.api_url);
+
                 // init app
                 Utilities.init(API_URL, store);
 
@@ -48,6 +52,13 @@ public class SplashActivity extends AppCompatActivity {
                 if (Utilities.FCM.isEmpty()) {
                     Utilities.getFCMToken();
                 }
+
+                Utilities.branches = Utilities.api.getBranches();
+
+                LatLng latlng1 = Utilities.branches.get(0).latLng;
+                LatLng latlng2 = Utilities.branches.get(1).latLng;
+
+                Log.d("Distance", Utilities.distanceCalculate(latlng1,latlng2) + "");
 
                 isHaveAccount = Utilities.api.validAccount();
 
