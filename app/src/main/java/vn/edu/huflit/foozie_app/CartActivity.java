@@ -72,7 +72,7 @@ public class CartActivity extends AppCompatActivity {
 
     private DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
-    public void renderTotal() {
+    private void renderTotal() {
         int total = 0;
         int totalProductItem = 0;
         for (Food item : cartAdapter.mCart) {
