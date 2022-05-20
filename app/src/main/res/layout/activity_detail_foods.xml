@@ -17,15 +17,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
 
-    <ImageView
-        android:id="@+id/btn_favorite"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:text="Chi tiết"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back_detail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/favorite_unselected" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_back_detail" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -57,7 +60,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_black"
             android:text="Pizza hải sản nhiệt đới sốt tiêu size nhỏ"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_food_detail"
@@ -70,17 +73,18 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_medium"
             android:text="109000 VNĐ"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tv_name_food_detail"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_food_detail" />
+
         <TextView
             android:id="@+id/tv_code_food_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="PIZZA"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/tv_price_food_detail"
             app:layout_constraintTop_toBottomOf="@+id/tv_price_food_detail" />
@@ -94,7 +98,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Pizzamin Sea - size M. Sốt tiêu đen thơm nồng, đậm vị, hơi the, rắc topping hải sản tôm mực kết hợp dứa chua ngọt thanh mát và được phủ 2 tầng hỗn hợp phô mai Mozzarella và Cheddar nên một khẩu vị xuất sắc với sắc màu óng ánh vàng ươm"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,18 +112,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/text_color"
         android:text="Đặt ngay"
-        android:backgroundTint="#243665"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_food_detail" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_food_detail"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,22 +133,14 @@
         android:id="@+id/textView18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="Các món ăn cùng loại"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/roboto_black"
-        android:textColor="#243665"
-        android:textSize="15sp"
+        android:text="Gợi ý"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_voucher_food_detail"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_food_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

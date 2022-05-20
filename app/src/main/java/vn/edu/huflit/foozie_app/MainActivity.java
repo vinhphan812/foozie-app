@@ -44,17 +44,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         mviewPager.setCurrentItem(0);
                         break;
-                    case R.id.action_activity:
+                    case R.id.action_notifications:
                         mviewPager.setCurrentItem(1);
                         break;
-                    case R.id.action_notifications:
+                    case R.id.action_gift:
                         mviewPager.setCurrentItem(2);
                         break;
-                    case R.id.action_gift:
-                        mviewPager.setCurrentItem(3);
-                        break;
                     case R.id.action_account:
-                        mviewPager.setCurrentItem(4);
+                        mviewPager.setCurrentItem(3);
                         break;
                 }
                 return true;
@@ -78,15 +75,12 @@ public class MainActivity extends AppCompatActivity {
                         mbottomNavigationView.getMenu().findItem(R.id.action_home).setChecked(true);
                         break;
                     case 1:
-                        mbottomNavigationView.getMenu().findItem(R.id.action_activity).setChecked(true);
-                        break;
-                    case 2:
                         mbottomNavigationView.getMenu().findItem(R.id.action_notifications).setChecked(true);
                         break;
-                    case 3:
+                    case 2:
                         mbottomNavigationView.getMenu().findItem(R.id.action_gift).setChecked(true);
                         break;
-                    case 4:
+                    case 3:
                         mbottomNavigationView.getMenu().findItem(R.id.action_account).setChecked(true);
                         break;
                 }

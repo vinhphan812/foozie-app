@@ -17,7 +17,7 @@
         android:fontFamily="@font/roboto_black"
         android:text="Thay đổi thông tin"
         android:textAlignment="center"
-        android:textColor="#243665"
+        android:textColor="@color/text_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="#243665"
+        android:background="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -44,8 +44,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:hint="Họ và tên"
-        app:boxStrokeColor="#243665"
-        app:hintTextColor="#243665"
+        app:boxStrokeColor="@color/text_color"
+        app:hintTextColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -64,8 +64,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:hint="Số điện thoại"
-        app:boxStrokeColor="#243665"
-        app:hintTextColor="#243665"
+        app:boxStrokeColor="@color/text_color"
+        app:hintTextColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_full_name">
@@ -76,26 +76,6 @@
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:hint="Email"
-        app:boxStrokeColor="#243665"
-        app:hintTextColor="#243665"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phone">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/btn_change_info"
         android:layout_width="match_parent"
@@ -104,12 +84,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="#243665"
+        android:backgroundTint="@color/text_color"
         android:fontFamily="@font/roboto_medium"
         android:text="Thay đổi"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

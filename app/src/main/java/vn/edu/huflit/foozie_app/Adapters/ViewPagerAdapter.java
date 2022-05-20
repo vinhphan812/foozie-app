@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import vn.edu.huflit.foozie_app.Fragments.homepage.AccountFragment;
 import vn.edu.huflit.foozie_app.Fragments.homepage.VoucherFragment;
 import vn.edu.huflit.foozie_app.Fragments.homepage.NotificationsFragment;
-import vn.edu.huflit.foozie_app.Fragments.homepage.ActivityFragment;
 import vn.edu.huflit.foozie_app.Fragments.homepage.HomeFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -21,12 +20,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 1:
-                return new ActivityFragment();
-            case 2:
                 return new NotificationsFragment();
-            case 3:
+            case 2:
                 return new VoucherFragment();
-            case 4:
+            case 3:
                 return new AccountFragment();
             default:
                 return new HomeFragment();
@@ -36,6 +33,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 }

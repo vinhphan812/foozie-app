@@ -3,16 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/account.xml" value="0.2155" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/back.xml" value="0.1805" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_check_black_24dp.xml" value="0.179" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_extension_black_24dp.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_fingerprint_black_24dp.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_keyboard_backspace_black_36dp.xml" value="0.186" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_logout_black_24dp.xml" value="0.1805" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_maximize_black_24dp.xml" value="0.19" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_mode_white_24dp.xml" value="0.1805" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_notifications_black_24dp.xml" value="0.2155" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/baseline_shopping_cart_white_24dp.xml" value="0.1265" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/bg_search.xml" value="0.179" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/change_pass_icon.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/circle.xml" value="0.177" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/edit.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/edit_icon.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/favorite_unselected.xml" value="0.1805" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/ic_plus.xml" value="0.19" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/indicator_default.xml" value="0.177" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/indicator_selected.xml" value="0.177" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/indicator_selector.xml" value="0.1805" />
@@ -23,7 +31,9 @@
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/next_icon.xml" value="0.1805" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/payment.xml" value="0.186" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/drawable/shapebgsearch.xml" value="0.1805" />
-        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_detail_foods.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_branch.xml" value="0.234375" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_cart.xml" value="0.2" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_detail_foods.xml" value="0.2" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_detail_type_food.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_detail_voucher.xml" value="0.2" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_details_food.xml" value="0.25" />
@@ -31,40 +41,54 @@
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_intro_screen.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_introduce_ranking.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_location.xml" value="0.2" />
-        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_maps.xml" value="0.25" />
-        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_order.xml" value="0.2" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_payment.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_signin.xml" value="0.176" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_signup.xml" value="0.176" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_test.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/activity_verify_account.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/dialog_change_pass.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/dialog_confirm_order.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/dialog_edit.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/dialog_order.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_account.xml" value="0.264" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_activity.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_change_password.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_confrim_email.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_gift.xml" value="0.13333333333333333" />
-        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_home.xml" value="0.536" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_name_birthday_.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_payment.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_phone_address.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_type_email.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_usernme_password_.xml" value="0.25" />
-        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_verify_email.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_verify_email.xml" value="0.16799999999999998" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/fragment_voucher.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_activity.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_branch.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_cart.xml" value="0.264" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_dropdown_menu.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_food.xml" value="0.264" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_food_horizontal.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_food_vertical.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_horizontal.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_layout_type_food.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_list_location.xml" value="0.25" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_location.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_vertical.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/item_voucher.xml" value="0.264" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/layout_bg_item.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/layout/layout_intro.xml" value="0.25" />
         <entry key="..\:/DADD/foozie-app/app/src/main/res/menu/menu_bottom_nav.xml" value="0.264" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2155" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1935" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.1935" />
+        <entry key="..\:/DADD/foozie-app/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.2155" />
       </map>
     </option>
   </component>

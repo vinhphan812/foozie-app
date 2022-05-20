@@ -88,7 +88,6 @@ public class PhoneAndAddressFragment extends Fragment {
             public void onClick(View v) {
                 String Firstname = getArguments().getString("first_name");
                 String Lastname = getArguments().getString("last_name");
-                String Birth = getArguments().getString("birth");
                 String Phone = phone.getEditText().getText().toString();
                 String Email = email.getEditText().getText().toString();
                 if (Phone.isEmpty()) {
@@ -97,7 +96,6 @@ public class PhoneAndAddressFragment extends Fragment {
                 } else {
                     bundle.putString("first_name", Firstname);
                     bundle.putString("last_name", Lastname);
-                    bundle.putString("birth", Birth);
                     bundle.putString("phone", Phone);
                     bundle.putString("email", Email);
                 }

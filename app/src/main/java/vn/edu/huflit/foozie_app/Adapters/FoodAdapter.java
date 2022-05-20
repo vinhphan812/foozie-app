@@ -9,13 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.API.ImageAPI;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.R;
 
-public class FoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolderFood> {
     public List<Food> mfoods;
     private Listener mlistener;
 
@@ -30,20 +31,21 @@ public class FoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderFood onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food, parent, false);
         return new FoodAdapter.ViewHolderFood(view);
     }
 
+    private DecimalFormat moneyFormat = new DecimalFormat("0.00");
+
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderFood holder, int position) {
         Food food = mfoods.get(position);
-        FoodAdapter.ViewHolderFood viewHolderHorizontal = (FoodAdapter.ViewHolderFood) holder;
-        viewHolderHorizontal.tvNameFood.setText(food.name);
-        viewHolderHorizontal.tvPriceFood.setText(food.price + " " + "VNĐ");
-        viewHolderHorizontal.tvCodeFood.setText(food.type.toString());
-        ImageAPI.getCorner(food.thumbnail, viewHolderHorizontal.imgFood);
-        viewHolderHorizontal.itemView.setOnClickListener(v -> mlistener.onClick((Food) food));
+        holder.tvNameFood.setText(food.name);
+        holder.tvPriceFood.setText(moneyFormat.format(food.price) + " " + "Vnđ");
+        holder.tvCodeFood.setText(food.type.toString());
+        ImageAPI.getCorner(food.thumbnail, holder.imgFood);
+        holder.itemView.setOnClickListener(v -> mlistener.onClick((Food) food));
     }
 
     @Override
@@ -51,7 +53,7 @@ public class FoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mfoods.size();
     }
 
-    private class ViewHolderFood extends RecyclerView.ViewHolder {
+    public class ViewHolderFood extends RecyclerView.ViewHolder {
         ImageView imgFood;
         TextView tvNameFood, tvPriceFood, tvCodeFood;
 

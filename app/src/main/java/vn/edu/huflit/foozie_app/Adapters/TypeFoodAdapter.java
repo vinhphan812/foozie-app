@@ -42,12 +42,9 @@ public class TypeFoodAdapter extends RecyclerView.Adapter<TypeFoodAdapter.ViewHo
         FoodType foodType = mtype.get(position);
 
         holder.tvFoodType.setText(foodType.name);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.tvFoodType.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                mlistener.onClick(foodType);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            holder.tvFoodType.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            mlistener.onClick(foodType);
         });
     }
 
