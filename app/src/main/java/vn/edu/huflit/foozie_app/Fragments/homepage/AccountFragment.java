@@ -39,6 +39,7 @@ public class AccountFragment extends Fragment {
     TextView fullName, phone, email, countCart;
     ImageView rank;
     ConstraintLayout btnChangePass, btnLogOut, btnEdit, btnBranch;
+    List<Food> foodCart;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -139,7 +140,7 @@ public class AccountFragment extends Fragment {
         Button btnChangePass;
         edtOldPass = view.findViewById(R.id.edt_old_pass);
         edtNewPass = view.findViewById(R.id.edt_new_pass);
-        btnChangePass =(Button) view.findViewById(R.id.btn_change_pass);
+        btnChangePass = (Button) view.findViewById(R.id.btn_change_pass);
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_change_pass);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
