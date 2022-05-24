@@ -18,6 +18,8 @@ public class  Food extends BaseDTO implements Serializable {
     public List<FoodType> type;
     @SerializedName("thumbnail")
     public String thumbnail;
+    @SerializedName("quantity")
+    public int quantity;
 
     @NonNull
     @Override

@@ -1,9 +1,11 @@
 package vn.edu.huflit.foozie_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +15,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class SignInActivity extends AppCompatActivity {
-    private CheckBox btnRememberAccount;
     private TextInputLayout Username, Password;
     Button btnSignIn;
-    private TextView btnSignUp, btnFotGetPass;
-
+    private TextView btnSignUp;
+    private SharedPreferences preferences;
+    private static final String PREFS_NAME = "prefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,6 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
-        //Forget password
-        btnFotGetPass.setOnClickListener(v -> {
-            Intent intent = new Intent(SignInActivity.this, verifyAccountActivity.class);
-            startActivity(intent);
-        });
     }
 
     private void bindWidget() {
@@ -61,7 +58,5 @@ public class SignInActivity extends AppCompatActivity {
         Password = (TextInputLayout) findViewById(R.id.edt_password_signIn);
         btnSignIn = (Button) findViewById(R.id.btn_signIn);
         btnSignUp = (TextView) findViewById(R.id.btn_sign_up_signIn);
-        btnFotGetPass = (TextView) findViewById(R.id.btn_fotGetPass_signIn);
-        btnRememberAccount = (CheckBox) findViewById(R.id.chk_SignIn);
     }
 }

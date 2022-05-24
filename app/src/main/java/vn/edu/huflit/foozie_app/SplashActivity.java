@@ -36,7 +36,6 @@ public class SplashActivity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         logo.setAnimation(logoAnim);
 
-
         SharedPreferences store = this.getSharedPreferences(String.valueOf(R.string.localStoreName), Context.MODE_PRIVATE);
 
         Thread LoadDataThread = new Thread(() -> {
@@ -70,9 +69,7 @@ public class SplashActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Log.d("ERROR_THREAD", e.getMessage());
             } finally {
-
-
-                Intent intent = new Intent(SplashActivity.this, isHaveAccount ? MainActivity.class : SignInActivity.class);
+                Intent intent = new Intent(SplashActivity.this, isHaveAccount ? MainActivity.class : IntroActivity.class);
                 startActivity(intent);
                 finish();
             }

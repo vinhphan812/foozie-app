@@ -20,11 +20,14 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
+import vn.edu.huflit.foozie_app.BranchActivity;
+import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.SignInActivity;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
-import vn.edu.huflit.foozie_app.verifyAccountActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,9 +36,10 @@ import vn.edu.huflit.foozie_app.verifyAccountActivity;
  */
 public class AccountFragment extends Fragment {
     User newUser;
-    TextView fullName, phone, email;
+    TextView fullName, phone, email, countCart;
     ImageView rank;
-    ConstraintLayout btnChangePass, btnLogOut, btnEdit;
+    ConstraintLayout btnChangePass, btnLogOut, btnEdit, btnBranch;
+    List<Food> foodCart;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,21 +94,25 @@ public class AccountFragment extends Fragment {
         phone = (TextView) view.findViewById(R.id.tv_phone_user);
         email = (TextView) view.findViewById(R.id.tv_email_user);
         rank = (ImageView) view.findViewById(R.id.img_rank_user);
+        countCart = view.findViewById(R.id.tv_count_order);
+        try {
+            foodCart=Utilities.api.getCart();
+            countCart.setText(foodCart.size()+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             newUser = Utilities.api.getMe();
             fullName.setText(newUser.first_name + ' ' + newUser.last_name);
             phone.setText(newUser.phone);
             email.setText(newUser.email);
-//            ImageAPI.loadBackground(newUser.ranking);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         //change pass
         btnChangePass = (ConstraintLayout) view.findViewById(R.id.btn_change_pass);
         btnChangePass.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), verifyAccountActivity.class);
-            startActivity(intent);
+            showChangePassDialog();
         });
         //log out
         btnLogOut = (ConstraintLayout) view.findViewById(R.id.btn_log_out);
@@ -116,17 +124,37 @@ public class AccountFragment extends Fragment {
         //edit
         btnEdit = (ConstraintLayout) view.findViewById(R.id.btn_edit);
         btnEdit.setOnClickListener(v -> {
-            showChangePasswordDialog();
+            showChangeInfoDialog();
+        });
+        //branch
+        btnBranch = (ConstraintLayout) view.findViewById(R.id.btn_branch);
+        btnBranch.setOnClickListener(v -> {
+            Intent intentBranch = new Intent(getContext(), BranchActivity.class);
+            startActivity(intentBranch);
         });
     }
 
-    private void showChangePasswordDialog() {
+    private void showChangePassDialog() {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_change_pass, null);
+        TextInputLayout edtOldPass, edtNewPass;
+        Button btnChangePass;
+        edtOldPass = view.findViewById(R.id.edt_old_pass);
+        edtNewPass = view.findViewById(R.id.edt_new_pass);
+        btnChangePass = (Button) view.findViewById(R.id.btn_change_pass);
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_change_pass);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+    }
+
+    private void showChangeInfoDialog() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_edit, null);
-        TextInputLayout edtFullName, edtPhone, edtEmail;
+        TextInputLayout edtFullName, edtPhone;
         Button btnUpdateInfo;
-        edtFullName = (TextInputLayout) view.findViewById(R.id.edt_full_name);
-        edtPhone = (TextInputLayout) view.findViewById(R.id.edt_phone);
-        edtEmail = view.findViewById(R.id.edt_email);
+        edtFullName = view.findViewById(R.id.edt_full_name);
+        edtPhone = view.findViewById(R.id.edt_phone);
         btnUpdateInfo = (Button) view.findViewById(R.id.btn_edit);
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_edit);

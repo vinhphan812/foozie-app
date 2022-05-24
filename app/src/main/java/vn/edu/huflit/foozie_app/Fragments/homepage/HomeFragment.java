@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.Adapters.FoodAdapter;
 import vn.edu.huflit.foozie_app.Adapters.TypeFoodAdapter;
+import vn.edu.huflit.foozie_app.CartActivity;
 import vn.edu.huflit.foozie_app.DetailFoodsActivity;
-import vn.edu.huflit.foozie_app.LocationActivity;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
 import vn.edu.huflit.foozie_app.R;
@@ -36,8 +38,8 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
     FoodAdapter foodAdapter;
     List<FoodType> foodTypes;
     List<Food> foods;
-    ConstraintLayout btnLocation;
     SearchView searchView;
+    ImageButton btnCart;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,7 +93,6 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
         //type_food
         rvTypeFood = view.findViewById(R.id.rv_food_type);
         searchView = view.findViewById(R.id.searchView);
-
         try {
             foodTypes = Utilities.api.getFoodTypes();
             typeFoodAdapter = new TypeFoodAdapter(foodTypes, this);
@@ -112,15 +113,7 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //location
-        btnLocation = (ConstraintLayout) view.findViewById(R.id.btn_location);
-        btnLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), LocationActivity.class);
-                startActivity(intent);
-            }
-        });
+        //search
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -140,14 +133,22 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
                 return false;
             }
         });
+        //cart
+        btnCart = (ImageButton) view.findViewById(R.id.btn_cart);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onClick(FoodType foodType) {
         try {
             foodAdapter.mfoods = Utilities.api.getFoods(foodType.id, null);
-            foodAdapter.selected = foodType.id;
-
+            typeFoodAdapter.selected = foodType.id;
             typeFoodAdapter.notifyDataSetChanged();
             foodAdapter.notifyDataSetChanged();
         } catch (Exception e) {
@@ -160,9 +161,7 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
     @Override
     public void onClick(Food foodsItem) {
         Intent intent = new Intent(getContext(), DetailFoodsActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("foodsItem", foodsItem);
-        intent.putExtras(bundle);
+        intent.putExtra("id", foodsItem.id);
         startActivity(intent);
     }
 }

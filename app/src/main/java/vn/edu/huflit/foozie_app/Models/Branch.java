@@ -5,7 +5,8 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
-import vn.edu.huflit.foozie_app.R;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Branch {
     @SerializedName("address")
@@ -16,6 +17,8 @@ public class Branch {
     public String phone;
     @SerializedName("latLng")
     public LatLng latLng;
+
+    public Double distance;
 
     @NonNull
     @Override
