@@ -45,8 +45,13 @@ public class CartActivity extends AppCompatActivity {
             startActivity(intent);
         });
         btnConfirm.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, OrderActivity.class);
-            startActivity(intent);
+            if (foodCart.isEmpty()) {
+                Utilities.alert(v, "Hãy thêm món ăn vào giỏ hàng", Utilities.AlertType.Error);
+                return;
+            } else {
+                Intent intent = new Intent(CartActivity.this, OrderActivity.class);
+                startActivity(intent);
+            }
         });
         try {
             foodCart = Utilities.api.getCart();
@@ -67,15 +72,15 @@ public class CartActivity extends AppCompatActivity {
 
     private DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
-    private void renderTotal() {
+    public void renderTotal() {
         int total = 0;
         int totalProductItem = 0;
         for (Food item : cartAdapter.mCart) {
             total += item.price * item.quantity;
             totalProductItem += item.quantity;
         }
-        tvTotalPrice.setText(moneyFormat.format(total) + " " + "Vnđ");
         tvTotalProduct.setText(cartAdapter.mCart.size() + "");
         tvTotalProductItem.setText(totalProductItem + "");
+        tvTotalPrice.setText(moneyFormat.format(total) + " " + "Vnđ");
     }
 }

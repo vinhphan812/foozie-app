@@ -34,27 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_back_detail" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_delivery_location"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:boxStrokeColor="@color/text_color"
-            app:hintTextColor="@color/text_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_location">
-
-            <AutoCompleteTextView
-                android:id="@+id/auto_text_delivery_location"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <fragment
             android:id="@+id/fragment_map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -62,9 +41,9 @@
             android:layout_height="250dp"
             android:layout_margin="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_delivery_location" />
+            app:layout_constraintTop_toBottomOf="@+id/search_location"
+            tools:layout="@layout/activity_order" />
 
         <TextView
             android:id="@+id/textView15"

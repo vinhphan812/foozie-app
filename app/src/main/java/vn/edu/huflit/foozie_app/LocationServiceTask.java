@@ -42,20 +42,12 @@ public class LocationServiceTask {
         final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
         final String message = "Please enable Location Services to detect your location.";
 
-        builder.setMessage(message)
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface d, int id) {
-                                context.startActivity(new Intent(action));
-                                d.dismiss();
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface d, int id) {
-                                d.cancel();
-                            }
-                        });
+        builder.setMessage(message).setPositiveButton("OK",
+                (d, id) -> {
+                    context.startActivity(new Intent(action));
+                    d.dismiss();
+                }).setNegativeButton("Cancel",
+                (d, id) -> d.cancel());
         builder.create().show();
     }
 

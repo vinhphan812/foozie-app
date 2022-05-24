@@ -20,7 +20,10 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import vn.edu.huflit.foozie_app.BranchActivity;
+import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.SignInActivity;
@@ -33,9 +36,10 @@ import vn.edu.huflit.foozie_app.Utils.Utilities;
  */
 public class AccountFragment extends Fragment {
     User newUser;
-    TextView fullName, phone, email;
+    TextView fullName, phone, email, countCart;
     ImageView rank;
     ConstraintLayout btnChangePass, btnLogOut, btnEdit, btnBranch;
+    List<Food> foodCart;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +94,13 @@ public class AccountFragment extends Fragment {
         phone = (TextView) view.findViewById(R.id.tv_phone_user);
         email = (TextView) view.findViewById(R.id.tv_email_user);
         rank = (ImageView) view.findViewById(R.id.img_rank_user);
+        countCart = view.findViewById(R.id.tv_count_order);
+        try {
+            foodCart=Utilities.api.getCart();
+            countCart.setText(foodCart.size()+"");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             newUser = Utilities.api.getMe();
             fullName.setText(newUser.first_name + ' ' + newUser.last_name);
@@ -98,7 +109,6 @@ public class AccountFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         //change pass
         btnChangePass = (ConstraintLayout) view.findViewById(R.id.btn_change_pass);
         btnChangePass.setOnClickListener(v -> {
@@ -130,7 +140,7 @@ public class AccountFragment extends Fragment {
         Button btnChangePass;
         edtOldPass = view.findViewById(R.id.edt_old_pass);
         edtNewPass = view.findViewById(R.id.edt_new_pass);
-        btnChangePass =(Button) view.findViewById(R.id.btn_change_pass);
+        btnChangePass = (Button) view.findViewById(R.id.btn_change_pass);
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_change_pass);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
