@@ -84,9 +84,7 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.Listener
         super.onViewCreated(view, savedInstanceState);
         root = view;
         rvVouchers = view.findViewById(R.id.rv_voucher);
-
         vouchers = new ArrayList<>();
-
         voucherAdapter = new VoucherAdapter(vouchers, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rvVouchers.setLayoutManager(linearLayoutManager);

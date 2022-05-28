@@ -11,9 +11,9 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/img_avatar"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
         android:elevation="10dp"
         android:src="@drawable/avatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/img_rank_user"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:elevation="10dp"
         android:src="@drawable/rank_icon"
         app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
@@ -41,7 +41,7 @@
         android:fontFamily="@font/roboto_black"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="#243665"
+        android:textColor="@color/text_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         android:fontFamily="@font/roboto_medium"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="#243665"
+        android:textColor="@color/text_color"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,127 +71,26 @@
         android:fontFamily="@font/roboto_medium"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="#243665"
+        android:textColor="@color/text_color"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email_user" />
 
-    <LinearLayout
-        android:id="@+id/layout_order"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/layout_favorite"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
-
-        <TextView
-            android:id="@+id/tv_order"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_black"
-            android:paddingTop="25dp"
-            android:text="1000"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Đơn"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_favorite"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/layout_voucher_used"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/layout_order"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
-
-        <TextView
-            android:id="@+id/tv_favorite"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_black"
-            android:paddingTop="25dp"
-            android:text="10"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Thích"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_voucher_used"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/layout_favorite"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
-
-        <TextView
-            android:id="@+id/tv_voucher_used"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_black"
-            android:paddingTop="25dp"
-            android:text="10"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Voucher"
-            android:textAlignment="center"
-            android:textColor="#243665"
-            android:textSize="15sp" />
-    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_edit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/layout_bg_item"
         android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_change_pass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_favorite">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -213,7 +112,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Chỉnh sửa thông tin"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -237,13 +136,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/layout_bg_item"
         android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_branch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -265,11 +164,63 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Đổi mật khẩu"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView142"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/next_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_branch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/layout_bg_item"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_log_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView123"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="10dp"
+            android:src="@drawable/location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView213"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Chi nhánh"
+            android:textColor="@color/text_color"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView123"
+            app:layout_constraintStart_toEndOf="@+id/imageView123"
+            app:layout_constraintTop_toTopOf="@+id/imageView123" />
 
         <ImageView
             android:id="@+id/imageView14"
@@ -289,13 +240,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/layout_bg_item"
         android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_change_pass">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imt_log_out"
@@ -317,7 +268,7 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Đăng xuất"
-            android:textColor="#243665"
+            android:textColor="@color/text_color"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/imt_log_out"
             app:layout_constraintStart_toEndOf="@+id/imt_log_out"
@@ -335,4 +286,74 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/layout_bg_item"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
+
+        <TextView
+            android:id="@+id/tv_count_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Đơn hàng"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/layout_bg_item"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
+        <TextView
+            android:id="@+id/tv_count_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Mã giảm giá"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

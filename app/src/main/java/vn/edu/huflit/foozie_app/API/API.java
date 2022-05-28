@@ -323,7 +323,7 @@ public class API {
     }
 
     public List<Food> getCart() throws Exception {
-        ResponseDTO res = requestServer("/api/cart");
+        ResponseDTO res = requestServer("/api/user/cart");
 
         res.isInvalid();
 
@@ -412,5 +412,6 @@ public class API {
         }
     }
     //endregion
+
 }
 

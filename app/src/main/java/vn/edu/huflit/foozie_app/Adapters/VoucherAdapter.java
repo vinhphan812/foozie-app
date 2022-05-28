@@ -46,7 +46,6 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.ViewHold
         viewHolderVoucher.tvDateVoucher.setText(dateFormat.format(voucher.valid_date));
         viewHolderVoucher.itemView.setOnClickListener(v -> mlistener.onClick(voucher));
     }
-
     @Override
     public int getItemCount() {
         return list.size();
