@@ -8,10 +8,13 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +31,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import vn.edu.huflit.foozie_app.Models.Branch;
+import vn.edu.huflit.foozie_app.Models.DiscountDTO;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
 import vn.edu.huflit.foozie_app.Models.MyVoucher;
@@ -100,16 +104,16 @@ public class API {
         return requestServer(path, null, "GET");
     }
 
-    private ResponseDTO requestServer(String path, RequestBody body) {
-        return requestServer(path, null, body, "POST");
+    private ResponseDTO requestServer(String path, HashMap body) {
+        return requestServer(path, body, "POST");
     }
 
     private ResponseDTO requestServer(String path, String params) {
         return requestServer(path, params, null, null);
     }
 
-    private ResponseDTO requestServer(String path, RequestBody body, String method) {
-        return requestServer(path, null, body, method);
+    private ResponseDTO requestServer(String path, HashMap body, String method) {
+        return requestServer(path, null, body != null ? RequestBody.create(JSON, gson.toJson(body)) : null, method);
     }
 
     private ResponseDTO requestServer(String path, String params, RequestBody body, String method) {
@@ -130,9 +134,8 @@ public class API {
         HashMap map = new HashMap();
         map.put("user", username);
         map.put("pass", password);
-        String jsonBody = gson.toJson(map);
 
-        ResponseDTO res = requestServer("/auth/login", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/auth/login", map);
 
         res.isInvalid();
 
@@ -161,7 +164,7 @@ public class API {
             map.put("phone", phone);
             map.put("token", Utilities.FCM);
 
-            ResponseDTO res = requestServer("/auth/signup", RequestBody.create(JSON, gson.toJson(map)));
+            ResponseDTO res = requestServer("/auth/signup", map);
 
             res.isInvalid();
 
@@ -225,9 +228,7 @@ public class API {
         map.put("ids", ids);
         map.put("seen", true);
 
-        String jsonBody = gson.toJson(map);
-
-        ResponseDTO res = requestServer("/api/user/seen-notifications", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/api/user/seen-notifications", map);
 
         return res.message;
     }
@@ -240,9 +241,7 @@ public class API {
         map.put("voucher_using", voucherUsingId);
         map.put("token", Utilities.FCM);
 
-        String jsonBody = gson.toJson(map);
-
-        ResponseDTO res = requestServer("/api/user/orders", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/api/user/orders", map);
 
         return res.message;
     }
@@ -255,23 +254,41 @@ public class API {
         return gson.fromJson(gson.toJson(res.data), Order.class);
     }
 
-
     public String takeVoucher(String id) throws Exception {
         HashMap map = new HashMap();
         map.put("id", id);
         map.put("token", Utilities.FCM);
 
-        String jsonBody = gson.toJson(map);
-
-        ResponseDTO res = requestServer("/api/user/take-voucher", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/api/user/take-voucher", map);
 
         res.isInvalid();
 
         return res.message;
     }
+
+    public DiscountDTO checkVoucher(String id, int price, int shipping_fee) throws Exception {
+            HashMap map = new HashMap();
+            map.put("price", price);
+            map.put("shipping_fee", shipping_fee);
+
+            ResponseDTO res = requestServer("/api/user/check-voucher/" + id, map);
+            res.isInvalid();
+            return gson.fromJson(gson.toJson(res.data), DiscountDTO.class);
+    }
     //endregion
 
     //region Public
+    public int distanceCalculateShippingFee(double distance) throws Exception {
+        HashMap map = new HashMap();
+        map.put("distance", distance);
+
+        ResponseDTO res = requestServer("/api/shipping-distance", map);
+
+        res.isInvalid();
+
+        return JsonParser.parseString(gson.toJson(res.data)).getAsJsonObject().get("fee").getAsInt();
+    }
+
     public List<Food> getFoods(String typeId, String query) throws Exception {
         ResponseDTO res = requestServer("/api/foods?" + (typeId == null ? "" : "type=" + typeId) + (query == null ? "" : (typeId == null ? "" : "&") + "query=" + query));
 
@@ -328,9 +345,8 @@ public class API {
         HashMap map = new HashMap();
         map.put("food", id);
         map.put("type", type);
-        String jsonBody = gson.toJson(map);
 
-        ResponseDTO res = requestServer("/api/user/cart", RequestBody.create(JSON, jsonBody));
+        ResponseDTO res = requestServer("/api/user/cart", map);
 
         return res.message;
     }

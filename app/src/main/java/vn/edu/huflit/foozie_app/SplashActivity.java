@@ -55,10 +55,13 @@ public class SplashActivity extends AppCompatActivity {
 
                 Utilities.branches = Utilities.api.getBranches();
 
-                LatLng latlng1 = Utilities.branches.get(0).latLng;
-                LatLng latlng2 = Utilities.branches.get(1).latLng;
-
-                Log.d("Distance", Utilities.distanceCalculate(latlng1,latlng2) + "");
+//                  Test
+//                LatLng latlng1 = Utilities.branches.get(0).latLng;
+//                LatLng latlng2 = Utilities.branches.get(1).latLng;
+//
+//                int fee = Utilities.api.distanceCalculateShippingFee(Utilities.distanceCalculate(latlng1,latlng2));
+//
+//                Log.d("VoucherWithPrice", Utilities.api.checkVoucher("6291e7345ef22b04b4add93d", 50000, fee) + "");
 
                 isHaveAccount = Utilities.api.validAccount();
 
