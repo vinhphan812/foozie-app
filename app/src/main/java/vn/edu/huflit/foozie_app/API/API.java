@@ -1,20 +1,16 @@
 package vn.edu.huflit.foozie_app.API;
 
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,7 +30,6 @@ import vn.edu.huflit.foozie_app.Models.Branch;
 import vn.edu.huflit.foozie_app.Models.DiscountDTO;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.FoodType;
-import vn.edu.huflit.foozie_app.Models.MyVoucher;
 import vn.edu.huflit.foozie_app.Models.Notification;
 import vn.edu.huflit.foozie_app.Models.Order;
 import vn.edu.huflit.foozie_app.Models.ResponseDTO;
