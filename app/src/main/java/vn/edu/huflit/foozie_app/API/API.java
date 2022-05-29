@@ -189,13 +189,13 @@ public class API {
         return gson.fromJson(gson.toJson(res.data), User.class);
     }
 
-    public MyVoucher getMyVouchers() throws Exception {
+    public List<Voucher> getMyVouchers() throws Exception {
 
         ResponseDTO res = requestServer("/api/user/vouchers");
 
         res.isInvalid();
 
-        Type listType = new TypeToken<MyVoucher>() {
+        Type listType = new TypeToken<List<Voucher>>() {
         }.getType();
 
         return gson.fromJson(gson.toJson(res.data), listType);
@@ -233,11 +233,10 @@ public class API {
         return res.message;
     }
 
-    public String createOrders(String branchId, String note, String voucherShipId, String voucherUsingId) {
+    public String createOrders(String branchId, String note, String voucherUsingId) {
         HashMap map = new HashMap();
         map.put("branch", branchId);
         map.put("note", note);
-        map.put("voucher_ship", voucherShipId);
         map.put("voucher_using", voucherUsingId);
         map.put("token", Utilities.FCM);
 

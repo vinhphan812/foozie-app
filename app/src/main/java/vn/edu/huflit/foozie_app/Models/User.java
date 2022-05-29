@@ -27,6 +27,10 @@ public class User extends BaseDTO {
     public String created_at;
     @SerializedName("updated_at")
     public String updated_at;
+    @SerializedName("myHistoryOrderCount")
+    public int myHistoryOrderCount;
+    @SerializedName("myVoucherCount")
+    public int myVoucherCount;  
     @NonNull
     @Override
     public String toString() {
