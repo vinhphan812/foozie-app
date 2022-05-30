@@ -184,6 +184,29 @@ public class API {
         return gson.fromJson(gson.toJson(res.data), User.class);
     }
 
+    public User updateMe(String first_name, String last_name, String phone) throws Exception {
+        HashMap map = new HashMap();
+        map.put("first_name", first_name);
+        map.put("last_name", last_name);
+        map.put("phone", phone);
+        ResponseDTO res = requestServer("/api/user", map);
+
+        res.isInvalid();
+
+        return gson.fromJson(gson.toJson(res.data), User.class);
+    }
+
+    public String ChangePassword(String current_password, String new_password) throws Exception {
+        HashMap map = new HashMap();
+        map.put("current_password", current_password);
+        map.put("new_password", new_password);
+
+        ResponseDTO res = requestServer("/api/user/change-password", map);
+        res.isInvalid();
+
+        return res.message;
+    }
+
     public List<Voucher> getMyVouchers() throws Exception {
 
         ResponseDTO res = requestServer("/api/user/vouchers");
