@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ import java.util.List;
 import vn.edu.huflit.foozie_app.BranchActivity;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.User;
+import vn.edu.huflit.foozie_app.Models.Voucher;
+import vn.edu.huflit.foozie_app.MyVoucherActivity;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.SignInActivity;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
@@ -36,10 +39,12 @@ import vn.edu.huflit.foozie_app.Utils.Utilities;
  */
 public class AccountFragment extends Fragment {
     User newUser;
-    TextView fullName, phone, email, countCart;
+    TextView fullName, phone, email, countOrder, countMyVoucher;
     ImageView rank;
     ConstraintLayout btnChangePass, btnLogOut, btnEdit, btnBranch;
     List<Food> foodCart;
+    List<Voucher> myVoucher;
+    LinearLayout layoutVoucher, layoutOrder;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,13 +99,29 @@ public class AccountFragment extends Fragment {
         phone = (TextView) view.findViewById(R.id.tv_phone_user);
         email = (TextView) view.findViewById(R.id.tv_email_user);
         rank = (ImageView) view.findViewById(R.id.img_rank_user);
-        countCart = view.findViewById(R.id.tv_count_order);
+        countOrder = view.findViewById(R.id.tv_count_order);
+        countMyVoucher = view.findViewById(R.id.tv_count_my_voucher);
+        layoutVoucher = (LinearLayout) view.findViewById(R.id.layout_voucher);
+        layoutOrder = (LinearLayout) view.findViewById(R.id.layout_order);
+
+        //My Order
+        layoutOrder.setOnClickListener(v -> {
+
+        });
+
+        //My Voucher
         try {
-            foodCart=Utilities.api.getCart();
-            countCart.setText(foodCart.size()+"");
+            myVoucher = Utilities.api.getMyVouchers();
+            countMyVoucher.setText(myVoucher.size() + "");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        layoutVoucher.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), MyVoucherActivity.class);
+            startActivity(intent);
+        });
+
+        // information account
         try {
             newUser = Utilities.api.getMe();
             fullName.setText(newUser.first_name + ' ' + newUser.last_name);

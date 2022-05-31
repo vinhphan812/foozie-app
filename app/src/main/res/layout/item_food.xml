@@ -41,10 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="TextView"
+        android:text="1999999999999999 VND"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toBottomOf="@+id/img_food"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name_food" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_code_food"

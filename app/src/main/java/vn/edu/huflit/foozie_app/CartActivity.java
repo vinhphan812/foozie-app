@@ -28,6 +28,7 @@ public class CartActivity extends AppCompatActivity {
     List<Food> foodCart;
     CartAdapter cartAdapter;
     TextView tvTotalProduct, tvTotalPrice, tvTotalProductItem;
+    Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,9 @@ public class CartActivity extends AppCompatActivity {
                 Utilities.alert(v, "Hãy thêm món ăn vào giỏ hàng", Utilities.AlertType.Error);
                 return;
             } else {
-                Intent intent = new Intent(CartActivity.this, OrderActivity.class);
+                renderTotal();
+                Intent intent = new Intent(CartActivity.this, CreateOrderActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -81,6 +84,8 @@ public class CartActivity extends AppCompatActivity {
         }
         tvTotalProduct.setText(cartAdapter.mCart.size() + "");
         tvTotalProductItem.setText(totalProductItem + "");
-        tvTotalPrice.setText(moneyFormat.format(total) + " " + "Vnđ");
+        tvTotalPrice.setText(moneyFormat.format(total) + " " + "VND");
+        bundle.putString("totalItem", totalProductItem + "");
+        bundle.putString("total", total + "");
     }
 }

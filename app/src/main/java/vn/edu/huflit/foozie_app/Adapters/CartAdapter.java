@@ -46,7 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
     public void onBindViewHolder(@NonNull ViewHolderCart holder, int position) {
         Food food = mCart.get(position);
         holder.tvFoodNameCart.setText(food.name);
-        holder.tvFoodPriceCart.setText(moneyFormat.format(food.price) + " " + "Vnđ");
+        holder.tvFoodPriceCart.setText(moneyFormat.format(food.price) + " " + "VND");
         ImageAPI.getCorner(food.thumbnail, holder.imgFoodCart);
         holder.edtQuantity.setText(food.quantity + " ");
         holder.btnCross.setOnClickListener(v -> {
