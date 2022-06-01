@@ -43,7 +43,7 @@ public class API {
     }
 
     // region Property
-    public static String HOST;
+    public static String HOST = "http://95.111.203.4:3000";
     private final OkHttpClient client;
 
     public CookieJar cookieJar;
@@ -189,7 +189,7 @@ public class API {
         map.put("first_name", first_name);
         map.put("last_name", last_name);
         map.put("phone", phone);
-        ResponseDTO res = requestServer("/api/user", map);
+        ResponseDTO res = requestServer("/api/user", map, "PUT");
 
         res.isInvalid();
 
