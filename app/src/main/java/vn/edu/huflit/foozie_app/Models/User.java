@@ -20,7 +20,7 @@ public class User extends BaseDTO {
     @SerializedName("current_ranking")
     public Ranking ranking;
     @SerializedName("score")
-    public int score;
+    public double score;
     @SerializedName("isVerifyMail")
     public String isVerify;
     @SerializedName("created_at")

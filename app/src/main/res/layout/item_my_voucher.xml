@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/layout_bg_item"
-    android:elevation="15dp">
+    android:background="@drawable/layout_bg_item">
 
 
     <ImageView
-        android:id="@+id/img_icon_voucher"
+        android:id="@+id/img_icon_my_voucher"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"
@@ -22,35 +21,33 @@
         app:srcCompat="@drawable/ticket" />
 
     <TextView
-        android:id="@+id/tv_name_voucher"
+        android:id="@+id/tv_name_my_voucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="6dp"
         android:fontFamily="@font/roboto_black"
         android:text="TextView"
         android:textColor="@color/text_color"
-        app:layout_constraintBottom_toTopOf="@+id/tv_code_voucher"
-        app:layout_constraintStart_toEndOf="@+id/img_icon_voucher"
+        app:layout_constraintBottom_toTopOf="@+id/tv_code_my_voucher"
+        app:layout_constraintStart_toEndOf="@+id/img_icon_my_voucher"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/tv_code_voucher"
+        android:id="@+id/tv_code_my_voucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         android:fontFamily="@font/roboto_medium"
         android:text="TextView"
         android:textColor="@color/text_color"
-        app:layout_constraintBottom_toTopOf="@+id/tv_date_voucher"
-        app:layout_constraintStart_toEndOf="@+id/img_icon_voucher"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name_voucher" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_date_my_voucher"
+        app:layout_constraintStart_toEndOf="@+id/img_icon_my_voucher"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_my_voucher" />
 
     <TextView
-        android:id="@+id/tv_date_voucher"
+        android:id="@+id/tv_date_my_voucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -59,6 +56,7 @@
         android:text="TextView"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_icon_voucher"
-        app:layout_constraintTop_toBottomOf="@+id/tv_code_voucher" />
+        app:layout_constraintStart_toEndOf="@+id/img_icon_my_voucher"
+        app:layout_constraintTop_toBottomOf="@+id/tv_code_my_voucher" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

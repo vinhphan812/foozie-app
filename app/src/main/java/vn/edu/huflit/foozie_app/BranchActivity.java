@@ -21,11 +21,17 @@ public class BranchActivity extends AppCompatActivity {
     BranchesAdapter branchesAdapter;
     List<Branch> branches;
     ImageView btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch);
-        rvBranch = findViewById(R.id.rv_branches);
+        bindWidget();
+        setUpWidgetListener();
+        callAPI();
+    }
+
+    private void callAPI() {
         try {
             branches = Utilities.api.getBranches();
             branchesAdapter = new BranchesAdapter(branches);
@@ -35,13 +41,19 @@ public class BranchActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        btnBack=findViewById(R.id.btn_back_branch);
+    }
+
+    private void setUpWidgetListener() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BranchActivity.this,MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
+    }
+
+    private void bindWidget() {
+        rvBranch = findViewById(R.id.rv_branches);
+        btnBack = findViewById(R.id.btn_back_branch);
     }
 }

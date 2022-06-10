@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_full_name"
+        android:id="@+id/edt_full_name_edit"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_phone"
+        android:id="@+id/edt_phone_edit"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         app:hintTextColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_full_name">
+        app:layout_constraintTop_toBottomOf="@+id/edt_full_name_edit">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -91,5 +91,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_phone_edit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

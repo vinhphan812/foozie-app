@@ -59,7 +59,7 @@ public class API {
 
     //region Constructor
     public void init(String cookie) {
-        if(!cookie.isEmpty()) {
+        if (!cookie.isEmpty()) {
             HttpUrl url = HttpUrl.parse(HOST);
             cookieStore.put(url.host(), Collections.singletonList(Cookie.parse(url, cookie)));
         }
@@ -139,7 +139,7 @@ public class API {
         return res.message;
     }
 
-    public Boolean validAccount(){
+    public Boolean validAccount() {
         try {
             this.getMe();
             return true;
@@ -253,12 +253,13 @@ public class API {
         return res.message;
     }
 
-    public String createOrders(String branchId, String note, String voucherUsingId) {
+    public String createOrders(String branchId, String note, String voucherUsingId, Double distance) {
         HashMap map = new HashMap();
         map.put("branch", branchId);
         map.put("note", note);
         map.put("voucher_using", voucherUsingId);
         map.put("token", Utilities.FCM);
+        map.put("distance", distance);
 
         ResponseDTO res = requestServer("/api/user/orders", map);
 
@@ -286,13 +287,13 @@ public class API {
     }
 
     public DiscountDTO checkVoucher(String id, int price, int shipping_fee) throws Exception {
-            HashMap map = new HashMap();
-            map.put("price", price);
-            map.put("shipping_fee", shipping_fee);
+        HashMap map = new HashMap();
+        map.put("price", price);
+        map.put("shipping_fee", shipping_fee);
 
-            ResponseDTO res = requestServer("/api/user/check-voucher/" + id, map);
-            res.isInvalid();
-            return gson.fromJson(gson.toJson(res.data), DiscountDTO.class);
+        ResponseDTO res = requestServer("/api/user/check-voucher/" + id, map);
+        res.isInvalid();
+        return gson.fromJson(gson.toJson(res.data), DiscountDTO.class);
     }
     //endregion
 

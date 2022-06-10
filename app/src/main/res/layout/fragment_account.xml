@@ -20,17 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_rank_user"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:elevation="10dp"
-        android:src="@drawable/rank_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/img_avatar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/img_avatar" />
-
     <TextView
         android:id="@+id/tv_full_name_user"
         android:layout_width="wrap_content"

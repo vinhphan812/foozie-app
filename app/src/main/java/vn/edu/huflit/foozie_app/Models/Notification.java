@@ -7,8 +7,8 @@ import java.util.Date;
 public class Notification extends BaseDTO {
     @SerializedName("title")
     public String title;
-    @SerializedName("content")
-    public String content;
+    @SerializedName("body")
+    public String body;
     @SerializedName("href")
     public String href;
     @SerializedName("recipient")

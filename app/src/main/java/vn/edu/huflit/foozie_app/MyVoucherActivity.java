@@ -44,6 +44,6 @@ public class MyVoucherActivity extends AppCompatActivity implements VoucherAdapt
 
     @Override
     public void onClick(Voucher voucherItem) {
-
     }
+
 }

@@ -112,4 +112,6 @@ public class VoucherFragment extends Fragment implements VoucherAdapter.Listener
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
+
 }

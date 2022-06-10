@@ -27,7 +27,7 @@
         android:id="@+id/tv_name_food"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/roboto_black"
         android:text="TextView"
         android:textColor="@color/text_color"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="1999999999999999 VND"
+        android:text="0"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toBottomOf="@+id/img_food"
         app:layout_constraintEnd_toEndOf="parent" />

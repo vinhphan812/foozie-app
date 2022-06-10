@@ -34,28 +34,12 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        btnBack = (ImageView) findViewById(R.id.btn_back_cart);
-        btnConfirm = (Button) findViewById(R.id.btn_confirm);
-        rvCart = (RecyclerView) findViewById(R.id.rv_cart);
-        btnBack = (ImageView) findViewById(R.id.btn_back_cart);
-        tvTotalProduct = (TextView) findViewById(R.id.tv_total_product);
-        tvTotalPrice = (TextView) findViewById(R.id.tv_total_price);
-        tvTotalProductItem = (TextView) findViewById(R.id.tv_total_product_item);
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-        btnConfirm.setOnClickListener(v -> {
-            if (foodCart.isEmpty()) {
-                Utilities.alert(v, "Hãy thêm món ăn vào giỏ hàng", Utilities.AlertType.Error);
-                return;
-            } else {
-                renderTotal();
-                Intent intent = new Intent(CartActivity.this, CreateOrderActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+        bindWidget();
+        setUpWidgetListener();
+        callAPI();
+    }
+
+    private void callAPI() {
         try {
             foodCart = Utilities.api.getCart();
             cartAdapter = new CartAdapter(foodCart, new Callback() {
@@ -73,6 +57,34 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+    private void setUpWidgetListener() {
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+        btnConfirm.setOnClickListener(v -> {
+            if (foodCart.isEmpty()) {
+                Utilities.alert(v, "Hãy thêm món ăn vào giỏ hàng", Utilities.AlertType.Error);
+                return;
+            } else {
+                renderTotal();
+                Intent intent = new Intent(CartActivity.this, CreateOrderActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void bindWidget() {
+        btnBack = (ImageView) findViewById(R.id.btn_back_cart);
+        btnConfirm = (Button) findViewById(R.id.btn_confirm);
+        rvCart = (RecyclerView) findViewById(R.id.rv_cart);
+        btnBack = (ImageView) findViewById(R.id.btn_back_cart);
+        tvTotalProduct = (TextView) findViewById(R.id.tv_total_product);
+        tvTotalPrice = (TextView) findViewById(R.id.tv_total_price);
+        tvTotalProductItem = (TextView) findViewById(R.id.tv_total_product_item);
+    }
+
     private DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     public void renderTotal() {
@@ -86,6 +98,6 @@ public class CartActivity extends AppCompatActivity {
         tvTotalProductItem.setText(totalProductItem + "");
         tvTotalPrice.setText(moneyFormat.format(total) + " " + "VND");
         bundle.putString("totalItem", totalProductItem + "");
-        bundle.putString("total", total + "");
+        bundle.putInt("total", total);
     }
 }

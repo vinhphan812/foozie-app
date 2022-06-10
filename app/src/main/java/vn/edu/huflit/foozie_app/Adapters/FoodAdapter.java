@@ -43,7 +43,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolderFood
         Food food = mfoods.get(position);
         holder.tvNameFood.setText(food.name);
         holder.tvPriceFood.setText(moneyFormat.format(food.price) + " " + "VND");
-        holder.tvCodeFood.setText(food.type.toString());
+        holder.tvCodeFood.setText(food.type.get(0).name);
         ImageAPI.getCorner(food.thumbnail, holder.imgFood);
         holder.itemView.setOnClickListener(v -> mlistener.onClick((Food) food));
     }

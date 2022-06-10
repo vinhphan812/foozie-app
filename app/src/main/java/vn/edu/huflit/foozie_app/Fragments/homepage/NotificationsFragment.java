@@ -1,5 +1,6 @@
 package vn.edu.huflit.foozie_app.Fragments.homepage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,18 +9,31 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import vn.edu.huflit.foozie_app.Adapters.NotificationAdapter;
+import vn.edu.huflit.foozie_app.Adapters.VoucherAdapter;
+import vn.edu.huflit.foozie_app.CreateOrderActivity;
+import vn.edu.huflit.foozie_app.Models.Notification;
+import vn.edu.huflit.foozie_app.Models.Voucher;
+import vn.edu.huflit.foozie_app.MyVoucherActivity;
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.SignInActivity;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NotificationsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationsFragment extends Fragment {
+public class NotificationsFragment extends Fragment implements NotificationAdapter.Listener {
+    RecyclerView rvNotification;
+    NotificationAdapter notificationAdapter;
+    List<Notification> notifications;
 
-    private RecyclerView rvNotification;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +79,18 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvNotification = view.findViewById(R.id.rv_notification);
+        try {
+            notifications = Utilities.api.getNotifications();
+            notificationAdapter = new NotificationAdapter(notifications, this);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+            rvNotification.setLayoutManager(linearLayoutManager);
+            rvNotification.setAdapter(notificationAdapter);
+        } catch (Exception e) {
+            if (e.getMessage() == "FAIL_AUTHENTICATION") {
+                Intent intent = new Intent(getContext(), SignInActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -72,5 +98,10 @@ public class NotificationsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notifications, container, false);
+    }
+
+    @Override
+    public void onClick(Notification notification) {
+
     }
 }

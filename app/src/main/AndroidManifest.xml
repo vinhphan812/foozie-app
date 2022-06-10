@@ -22,6 +22,15 @@
             android:name=".CreateOrderActivity"
             android:exported="false" />
         <activity
+            android:name=".MyOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".CartActivity"
             android:exported="false" />
 

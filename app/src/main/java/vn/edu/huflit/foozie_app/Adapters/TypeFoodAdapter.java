@@ -1,7 +1,9 @@
 package vn.edu.huflit.foozie_app.Adapters;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import vn.edu.huflit.foozie_app.Models.Branch;
 import vn.edu.huflit.foozie_app.Models.FoodType;
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class TypeFoodAdapter extends RecyclerView.Adapter<TypeFoodAdapter.ViewHolderTypeFood> {
     private List<FoodType> mtype;
@@ -37,13 +41,12 @@ public class TypeFoodAdapter extends RecyclerView.Adapter<TypeFoodAdapter.ViewHo
         return new TypeFoodAdapter.ViewHolderTypeFood(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolderTypeFood holder, int position) {
         FoodType foodType = mtype.get(position);
-
         holder.tvFoodType.setText(foodType.name);
         holder.itemView.setOnClickListener(v -> {
-            holder.tvFoodType.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             mlistener.onClick(foodType);
         });
     }
