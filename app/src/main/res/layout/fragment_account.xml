@@ -20,17 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_rank_user"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:elevation="10dp"
-        android:src="@drawable/rank_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/img_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/img_avatar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/img_avatar" />
-
     <TextView
         android:id="@+id/tv_full_name_user"
         android:layout_width="wrap_content"
@@ -288,14 +277,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/layout_order"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/layout_bg_item"
         android:elevation="10dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/layout_voucher"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
@@ -323,7 +312,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/layout_voucher"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
@@ -332,10 +321,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toEndOf="@+id/layout_order"
         app:layout_constraintTop_toBottomOf="@+id/tv_phone_user">
         <TextView
-            android:id="@+id/tv_count_voucher"
+            android:id="@+id/tv_count_my_voucher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

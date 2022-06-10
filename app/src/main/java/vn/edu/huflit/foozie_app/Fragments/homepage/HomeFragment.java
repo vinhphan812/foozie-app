@@ -153,9 +153,7 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
             foodAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             Utilities.alert(getView(), e.getMessage(), Utilities.AlertType.Error);
-
         }
-
     }
 
     @Override

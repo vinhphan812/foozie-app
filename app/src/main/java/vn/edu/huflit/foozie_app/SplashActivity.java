@@ -29,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
+
         //Animation
         logoAnim = AnimationUtils.loadAnimation(this, R.anim.logo_anim);
 
@@ -54,14 +55,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 Utilities.branches = Utilities.api.getBranches();
 
-//                  Test
-//                LatLng latlng1 = Utilities.branches.get(0).latLng;
-//                LatLng latlng2 = Utilities.branches.get(1).latLng;
-//
-//                int fee = Utilities.api.distanceCalculateShippingFee(Utilities.distanceCalculate(latlng1,latlng2));
-//
-//                Log.d("VoucherWithPrice", Utilities.api.checkVoucher("6291e7345ef22b04b4add93d", 50000, fee) + "");
-
                 isHaveAccount = Utilities.api.validAccount();
 
                 SharedPreferences.Editor editor = store.edit();
@@ -71,6 +64,7 @@ public class SplashActivity extends AppCompatActivity {
                 editor.commit();
             } catch (Exception e) {
                 Log.d("ERROR_THREAD", e.getMessage());
+
             } finally {
                 Intent intent = new Intent(SplashActivity.this, isHaveAccount ? MainActivity.class : IntroActivity.class);
                 startActivity(intent);

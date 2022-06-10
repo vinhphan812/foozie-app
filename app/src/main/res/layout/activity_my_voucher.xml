@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F3FA"
+    tools:context=".MyVoucherActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/btn_back_my_voucher"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_black"
+            android:text="Mã giảm giá của tôi"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back_my_voucher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_back_my_voucher" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_my_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back_my_voucher" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

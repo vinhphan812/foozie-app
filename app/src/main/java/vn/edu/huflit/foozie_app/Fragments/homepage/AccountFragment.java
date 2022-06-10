@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -22,9 +25,15 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
+import vn.edu.huflit.foozie_app.API.ImageAPI;
 import vn.edu.huflit.foozie_app.BranchActivity;
 import vn.edu.huflit.foozie_app.Models.Food;
+import vn.edu.huflit.foozie_app.Models.Order;
+import vn.edu.huflit.foozie_app.Models.Ranking;
 import vn.edu.huflit.foozie_app.Models.User;
+import vn.edu.huflit.foozie_app.Models.Voucher;
+import vn.edu.huflit.foozie_app.MyOrderActivity;
+import vn.edu.huflit.foozie_app.MyVoucherActivity;
 import vn.edu.huflit.foozie_app.R;
 import vn.edu.huflit.foozie_app.SignInActivity;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
@@ -36,10 +45,12 @@ import vn.edu.huflit.foozie_app.Utils.Utilities;
  */
 public class AccountFragment extends Fragment {
     User newUser;
-    TextView fullName, phone, email, countCart;
-    ImageView rank;
+    TextView fullName, phone, email, countOrder, countMyVoucher;
     ConstraintLayout btnChangePass, btnLogOut, btnEdit, btnBranch;
-    List<Food> foodCart;
+    List<Voucher> myVoucher;
+    LinearLayout btnMyVoucher, btnMyOrder;
+    List<Order> myOrder;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -93,14 +104,41 @@ public class AccountFragment extends Fragment {
         fullName = (TextView) view.findViewById(R.id.tv_full_name_user);
         phone = (TextView) view.findViewById(R.id.tv_phone_user);
         email = (TextView) view.findViewById(R.id.tv_email_user);
-        rank = (ImageView) view.findViewById(R.id.img_rank_user);
-        countCart = view.findViewById(R.id.tv_count_order);
+        countOrder = view.findViewById(R.id.tv_count_order);
+        countMyVoucher = view.findViewById(R.id.tv_count_my_voucher);
+        btnMyVoucher = view.findViewById(R.id.layout_voucher);
+        btnMyOrder = view.findViewById(R.id.layout_order);
+
+        //My Order
         try {
-            foodCart=Utilities.api.getCart();
-            countCart.setText(foodCart.size()+"");
+            myOrder = Utilities.api.getHistoryOrders();
+            countOrder.setText(myOrder.size() + "");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        btnMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyOrderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //My Voucher
+        try {
+            myVoucher = Utilities.api.getMyVouchers();
+            countMyVoucher.setText(myVoucher.size() + "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        btnMyVoucher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyVoucherActivity.class);
+                startActivity(intent);
+            }
+        });
+        // information account
         try {
             newUser = Utilities.api.getMe();
             fullName.setText(newUser.first_name + ' ' + newUser.last_name);
@@ -136,31 +174,76 @@ public class AccountFragment extends Fragment {
 
     private void showChangePassDialog() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_change_pass, null);
+
         TextInputLayout edtOldPass, edtNewPass;
         Button btnChangePass;
+
         edtOldPass = view.findViewById(R.id.edt_old_pass);
         edtNewPass = view.findViewById(R.id.edt_new_pass);
-        btnChangePass = (Button) view.findViewById(R.id.btn_change_pass);
-        Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.dialog_change_pass);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        Window window = dialog.getWindow();
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        btnChangePass = (Button) view.findViewById(R.id.btn_change_pass_dialog);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        btnChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String oldPass = edtOldPass.getEditText().getText().toString();
+                String newPass = edtNewPass.getEditText().getText().toString();
+                if (oldPass.isEmpty() || newPass.isEmpty()) {
+                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin", Utilities.AlertType.Error);
+                }
+                if (!oldPass.equals(newPass)) {
+                    Utilities.alert(view, "Mật khẩu đã tồn tại trước đó", Utilities.AlertType.Error);
+                }
+                if (newPass.length() < 8) {
+                    Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
+                }
+                try {
+                    Utilities.api.ChangePassword(oldPass, newPass);
+                    Utilities.alert(view, "Thành công", Utilities.AlertType.Success);
+                } catch (Exception e) {
+                    Utilities.alert(view, "Thất bại", Utilities.AlertType.Error);
+                }
+            }
+        });
         dialog.show();
     }
 
     private void showChangeInfoDialog() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_edit, null);
+
         TextInputLayout edtFullName, edtPhone;
         Button btnUpdateInfo;
-        edtFullName = view.findViewById(R.id.edt_full_name);
-        edtPhone = view.findViewById(R.id.edt_phone);
-        btnUpdateInfo = (Button) view.findViewById(R.id.btn_edit);
-        Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.dialog_edit);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        Window window = dialog.getWindow();
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+        edtFullName = view.findViewById(R.id.edt_full_name_edit);
+        edtPhone = view.findViewById(R.id.edt_phone_edit);
+        btnUpdateInfo = (Button) view.findViewById(R.id.btn_change_info);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fullName = edtFullName.getEditText().getText().toString();
+                String lastName = "";
+                String firstName = "";
+                if (fullName.split("\\w+").length > 1) {
+                    lastName = fullName.substring(fullName.lastIndexOf(" ") + 1);
+                    firstName = fullName.substring(0, fullName.lastIndexOf(' '));
+                } else {
+                    firstName = fullName;
+                }
+                String phone = edtPhone.getEditText().getText().toString();
+                try {
+                    Utilities.api.updateMe(firstName, lastName, phone);
+                    Utilities.alert(view, "Thành công", Utilities.AlertType.Success);
+                } catch (Exception e) {
+                    Utilities.alert(view, "Thất bại", Utilities.AlertType.Error);
+                }
+            }
+        });
         dialog.show();
     }
 }

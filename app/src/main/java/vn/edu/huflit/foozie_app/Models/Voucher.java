@@ -1,5 +1,7 @@
 package vn.edu.huflit.foozie_app.Models;
 
+import android.util.SparseBooleanArray;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -31,4 +33,16 @@ public class Voucher extends BaseDTO implements Serializable {
     public int min_price;
     @SerializedName("max_price")
     public int max_price;
+
+    private boolean isClicked= false;
+
+    public boolean getClicked() {
+        return isClicked;
+    }
+
+    public void HandleClick() {
+        isClicked = !isClicked;
+    }
+
+    public void setClicked(boolean clicked) { isClicked = clicked;}
 }

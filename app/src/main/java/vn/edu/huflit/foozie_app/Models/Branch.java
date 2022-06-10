@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Branch {
+public class Branch extends BaseDTO {
     @SerializedName("address")
     public String address;
     @SerializedName("name")
@@ -23,7 +23,7 @@ public class Branch {
     @NonNull
     @Override
     public String toString() {
-        return String.format("%s - %f,%f", name, latLng.latitude, latLng.longitude);
+        return String.format("%s - %f,%f", id, name, latLng.latitude, latLng.longitude);
     }
 //            const R = 6371e3; // metres
 //const φ1 = lat1 * Math.PI/180; // φ, λ in radians
