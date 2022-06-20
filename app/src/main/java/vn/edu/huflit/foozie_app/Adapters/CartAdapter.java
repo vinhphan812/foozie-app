@@ -39,14 +39,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         return new CartAdapter.ViewHolderCart(view);
     }
 
-    private DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCart holder, int position) {
         Food food = mCart.get(position);
         holder.tvFoodNameCart.setText(food.name);
-        holder.tvFoodPriceCart.setText(moneyFormat.format(food.price) + " " + "VND");
+        holder.tvFoodPriceCart.setText(Utilities.moneyFormat(food.price) + " " + "VND");
         ImageAPI.getCorner(food.thumbnail, holder.imgFoodCart);
         holder.edtQuantity.setText(food.quantity + " ");
         holder.btnCross.setOnClickListener(v -> {

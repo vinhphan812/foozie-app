@@ -3,11 +3,11 @@
     <string name="forGetPass"><u>Quên mật khẩu?</u></string>
     <string name="signUp"><u>Đăng ký</u></string>
     <string name="signIn"><u>Đăng nhập</u></string>
-    <string name="action_home">Home</string>
-    <string name="action_activity">Activity</string>
-    <string name="action_notifications">Notifications</string>
-    <string name="action_gift">Gift</string>
-    <string name="action_acc">Account</string>
+    <string name="action_home">Trang chủ</string>
+    <string name="action_activity">Hoạt động</string>
+    <string name="action_notifications">Thông báo</string>
+    <string name="action_gift">Quà tặng</string>
+    <string name="action_acc">Tài khoản</string>
 
     <!--  URL HOST OF API  -->
     <string name="api_url">https://food.vinhphancommunity.xyz</string>

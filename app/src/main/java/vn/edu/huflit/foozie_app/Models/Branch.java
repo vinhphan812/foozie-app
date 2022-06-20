@@ -17,9 +17,7 @@ public class Branch extends BaseDTO {
     public String phone;
     @SerializedName("latLng")
     public LatLng latLng;
-
     public Double distance;
-
     @NonNull
     @Override
     public String toString() {

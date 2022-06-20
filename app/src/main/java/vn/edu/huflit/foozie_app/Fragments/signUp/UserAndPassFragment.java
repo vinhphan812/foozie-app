@@ -109,7 +109,7 @@ public class UserAndPassFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SignInActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Utilities.alert(v, e.getMessage());
+                Utilities.alert(v,"Hệ thống đang gặp sự cố", Utilities.AlertType.Error);
             }
         });
     }

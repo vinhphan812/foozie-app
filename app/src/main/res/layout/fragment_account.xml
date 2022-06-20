@@ -11,8 +11,8 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/img_avatar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:elevation="10dp"
         android:src="@drawable/avatar"

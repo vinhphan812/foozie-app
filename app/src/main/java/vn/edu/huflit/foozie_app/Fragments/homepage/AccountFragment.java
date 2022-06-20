@@ -50,7 +50,6 @@ public class AccountFragment extends Fragment {
     List<Voucher> myVoucher;
     LinearLayout btnMyVoucher, btnMyOrder;
     List<Order> myOrder;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -163,6 +162,7 @@ public class AccountFragment extends Fragment {
         btnEdit = (ConstraintLayout) view.findViewById(R.id.btn_edit);
         btnEdit.setOnClickListener(v -> {
             showChangeInfoDialog();
+            return;
         });
         //branch
         btnBranch = (ConstraintLayout) view.findViewById(R.id.btn_branch);
@@ -188,18 +188,18 @@ public class AccountFragment extends Fragment {
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String oldPass = edtOldPass.getEditText().getText().toString();
-                String newPass = edtNewPass.getEditText().getText().toString();
-                if (oldPass.isEmpty() || newPass.isEmpty()) {
-                    Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin", Utilities.AlertType.Error);
-                }
-                if (!oldPass.equals(newPass)) {
-                    Utilities.alert(view, "Mật khẩu đã tồn tại trước đó", Utilities.AlertType.Error);
-                }
-                if (newPass.length() < 8) {
-                    Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
-                }
                 try {
+                    String oldPass = edtOldPass.getEditText().getText().toString();
+                    String newPass = edtNewPass.getEditText().getText().toString();
+                    if (oldPass.isEmpty() || newPass.isEmpty()) {
+                        Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin", Utilities.AlertType.Error);
+                    }
+                    if (!oldPass.equals(newPass)) {
+                        Utilities.alert(view, "Mật khẩu đã tồn tại trước đó", Utilities.AlertType.Error);
+                    }
+                    if (newPass.length() < 8) {
+                        Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
+                    }
                     Utilities.api.ChangePassword(oldPass, newPass);
                     Utilities.alert(view, "Thành công", Utilities.AlertType.Success);
                 } catch (Exception e) {
@@ -219,7 +219,13 @@ public class AccountFragment extends Fragment {
         edtFullName = view.findViewById(R.id.edt_full_name_edit);
         edtPhone = view.findViewById(R.id.edt_phone_edit);
         btnUpdateInfo = (Button) view.findViewById(R.id.btn_change_info);
-
+        try {
+            newUser = Utilities.api.getMe();
+            edtFullName.getEditText().setText(newUser.first_name + " " + newUser.last_name);
+            edtPhone.getEditText().setText(newUser.phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
         final AlertDialog dialog = builder.create();

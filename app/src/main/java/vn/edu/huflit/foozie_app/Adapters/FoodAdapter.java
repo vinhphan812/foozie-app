@@ -15,6 +15,7 @@ import java.util.List;
 import vn.edu.huflit.foozie_app.API.ImageAPI;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.R;
+import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolderFood> {
     public List<Food> mfoods;
@@ -36,13 +37,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolderFood
         return new FoodAdapter.ViewHolderFood(view);
     }
 
-    private DecimalFormat moneyFormat = new DecimalFormat("0.00");
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolderFood holder, int position) {
         Food food = mfoods.get(position);
         holder.tvNameFood.setText(food.name);
-        holder.tvPriceFood.setText(moneyFormat.format(food.price) + " " + "VND");
+        holder.tvPriceFood.setText(Utilities.moneyFormat(food.price) + " VND");
         holder.tvCodeFood.setText(food.type.get(0).name);
         ImageAPI.getCorner(food.thumbnail, holder.imgFood);
         holder.itemView.setOnClickListener(v -> mlistener.onClick((Food) food));

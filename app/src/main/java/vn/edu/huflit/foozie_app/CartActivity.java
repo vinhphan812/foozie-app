@@ -1,22 +1,18 @@
 package vn.edu.huflit.foozie_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.Adapters.CartAdapter;
-import vn.edu.huflit.foozie_app.Adapters.FoodAdapter;
 import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Utils.Callback;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
@@ -85,7 +81,6 @@ public class CartActivity extends AppCompatActivity {
         tvTotalProductItem = (TextView) findViewById(R.id.tv_total_product_item);
     }
 
-    private DecimalFormat moneyFormat = new DecimalFormat("0.00");
 
     public void renderTotal() {
         int total = 0;
@@ -96,7 +91,7 @@ public class CartActivity extends AppCompatActivity {
         }
         tvTotalProduct.setText(cartAdapter.mCart.size() + "");
         tvTotalProductItem.setText(totalProductItem + "");
-        tvTotalPrice.setText(moneyFormat.format(total) + " " + "VND");
+        tvTotalPrice.setText(Utilities.moneyFormat(total) + " VND");
         bundle.putString("totalItem", totalProductItem + "");
         bundle.putInt("total", total);
     }
