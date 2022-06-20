@@ -253,13 +253,14 @@ public class API {
         return res.message;
     }
 
-    public String createOrders(String branchId, String note, String voucherUsingId, Double distance) {
+    public String createOrders(String branchId, String note, String voucherUsingId, Double distance,String delivery) {
         HashMap map = new HashMap();
         map.put("branch", branchId);
         map.put("note", note);
         map.put("voucher_using", voucherUsingId);
         map.put("token", Utilities.FCM);
         map.put("distance", distance);
+        map.put("delivery", delivery);
 
         ResponseDTO res = requestServer("/api/user/orders", map);
 

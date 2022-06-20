@@ -26,6 +26,7 @@ public class DetailFoodsActivity extends AppCompatActivity implements FoodAdapte
     RecyclerView rvFoodDetail;
     FoodAdapter foodAdapter;
     List<Food> foods;
+    Food foodsItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +65,20 @@ public class DetailFoodsActivity extends AppCompatActivity implements FoodAdapte
         if (id.isEmpty())
             super.onBackPressed();
 
-        Food foodsItem = null;
+        foodsItem = null;
         try {
             foodsItem = Utilities.api.getFood(id);
         } catch (Exception e) {
             Log.d("GET_FOOD_" + id, e.getMessage());
         }
         name.setText(foodsItem.name);
-        price.setText(moneyFormat.format(foodsItem.price) + " " + "Vnđ");
-        description.setText(foodsItem.description);
-        code.setText(foodsItem.type.toString());
+        price.setText(moneyFormat.format(foodsItem.price) + " VND");
+        if (foodsItem.description.isEmpty()) {
+            description.setText("Chưa có nội dung để hiển thị");
+        } else {
+            description.setText(foodsItem.description);
+        }
+        code.setText(foodsItem.type.get(0).name);
 
         ImageAPI.getCorner(foodsItem.thumbnail, imgFoodDetail);
         try {

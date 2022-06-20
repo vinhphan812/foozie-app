@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.API.API;
@@ -83,5 +84,8 @@ public class Utilities {
 
         return R * c;
     }
-
+    static public String moneyFormat(int price){
+        DecimalFormat moneyFormat = new DecimalFormat("###,###,###");
+        return moneyFormat.format(price);
+    }
 }

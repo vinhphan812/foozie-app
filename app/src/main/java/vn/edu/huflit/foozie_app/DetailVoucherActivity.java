@@ -60,7 +60,11 @@ public class DetailVoucherActivity extends AppCompatActivity {
         date.setText(dateFormat.format(item.valid_date));
         code.setText(item.code);
         used.setText(item.max_used + "");
-        description.setText(item.description);
+        if (item.description.isEmpty()) {
+            description.setText("Chưa có nội dung để hiển thị");
+        } else {
+            description.setText(item.description);
+        }
     }
 
     private void bindWidget() {

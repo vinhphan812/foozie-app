@@ -21,8 +21,8 @@ import vn.edu.huflit.foozie_app.Utils.Utilities;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolderOrder> {
     public List<Order> mlist;
     private OrderAdapter.Listener mlistener;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
-    private DecimalFormat moneyFormat = new DecimalFormat("0.00");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
     public OrderAdapter(List<Order> list, Listener mlistener) {
         this.mlist = list;
         this.mlistener = mlistener;
@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolderOr
         OrderAdapter.ViewHolderOrder viewHolderOrder = holder;
         viewHolderOrder.dateOrder.setText(dateFormat.format(order.order_date));
         viewHolderOrder.idOrder.setText(order.id);
-        viewHolderOrder.totalPriceOrder.setText(moneyFormat.format(order.total) + " " + "VND");
+        viewHolderOrder.totalPriceOrder.setText(Utilities.moneyFormat(order.total) + " " + "VND");
         viewHolderOrder.itemView.setOnClickListener(v -> {
             mlistener.onClick(order);
         });

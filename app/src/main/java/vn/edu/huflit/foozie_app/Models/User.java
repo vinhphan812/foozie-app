@@ -30,7 +30,7 @@ public class User extends BaseDTO {
     @SerializedName("myHistoryOrderCount")
     public int myHistoryOrderCount;
     @SerializedName("myVoucherCount")
-    public int myVoucherCount;  
+    public int myVoucherCount;
     @NonNull
     @Override
     public String toString() {

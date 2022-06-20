@@ -1,8 +1,11 @@
 package vn.edu.huflit.foozie_app.Models;
 
+import android.location.Address;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order extends BaseDTO {
     @SerializedName("total_foods")

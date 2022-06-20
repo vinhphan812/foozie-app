@@ -1,19 +1,17 @@
 package vn.edu.huflit.foozie_app;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-
-import java.text.DecimalFormat;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.Adapters.OrderAdapter;
-import vn.edu.huflit.foozie_app.Adapters.VoucherAdapter;
 import vn.edu.huflit.foozie_app.Models.Order;
-import vn.edu.huflit.foozie_app.Models.Voucher;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class MyOrderActivity extends AppCompatActivity implements OrderAdapter.Listener {
@@ -44,6 +42,8 @@ public class MyOrderActivity extends AppCompatActivity implements OrderAdapter.L
 
     @Override
     public void onClick(Order order) {
-
+        Intent intent = new Intent(MyOrderActivity.this, DetailMyOrderActivity.class);
+        intent.putExtra("id", order.id);
+        startActivity(intent);
     }
 }

@@ -1,17 +1,14 @@
 package vn.edu.huflit.foozie_app;
 
+import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-
 import java.util.List;
 
-import vn.edu.huflit.foozie_app.Adapters.FoodAdapter;
 import vn.edu.huflit.foozie_app.Adapters.VoucherAdapter;
 import vn.edu.huflit.foozie_app.Models.Voucher;
 import vn.edu.huflit.foozie_app.Utils.Utilities;

@@ -12,9 +12,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import vn.edu.huflit.foozie_app.Models.Branch;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
 
 public class SplashActivity extends AppCompatActivity {
