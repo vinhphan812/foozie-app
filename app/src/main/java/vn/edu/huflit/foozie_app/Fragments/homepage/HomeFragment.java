@@ -2,10 +2,12 @@ package vn.edu.huflit.foozie_app.Fragments.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,9 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
     List<Food> foods;
     SearchView searchView;
     ImageButton btnCart;
+    TextView tvBadge;
+    ConstraintLayout badge;
+    int countBadge;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +95,19 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tvBadge = view.findViewById(R.id.tv_badge_count_cart);
+        badge = view.findViewById(R.id.badge);
+        try {
+            countBadge = Utilities.api.getCart().size();
+            if (countBadge != 0) {
+                tvBadge.setText(countBadge + "");
+            } else {
+                badge.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //type_food
         rvTypeFood = view.findViewById(R.id.rv_food_type);
         searchView = view.findViewById(R.id.searchView);
@@ -124,7 +142,6 @@ public class HomeFragment extends Fragment implements TypeFoodAdapter.Listener, 
                 } catch (Exception e) {
                     Utilities.alert(getView(), e.getMessage(), Utilities.AlertType.Error);
                 }
-
                 return true;
             }
 

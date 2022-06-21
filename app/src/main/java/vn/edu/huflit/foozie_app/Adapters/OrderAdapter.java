@@ -41,6 +41,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolderOr
         OrderAdapter.ViewHolderOrder viewHolderOrder = holder;
         viewHolderOrder.dateOrder.setText(dateFormat.format(order.order_date));
         viewHolderOrder.idOrder.setText(order.id);
+        if (order.status.equals("PENDING")) {
+            viewHolderOrder.tvStatusOrder.setText("Đang giao hàng.");
+        }
+        else {
+            viewHolderOrder.tvStatusOrder.setText("Đã giao.");
+        }
         viewHolderOrder.totalPriceOrder.setText(Utilities.moneyFormat(order.total) + " " + "VND");
         viewHolderOrder.itemView.setOnClickListener(v -> {
             mlistener.onClick(order);
@@ -58,13 +64,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolderOr
     }
 
     public class ViewHolderOrder extends RecyclerView.ViewHolder {
-        TextView dateOrder, idOrder, totalPriceOrder;
+        TextView dateOrder, idOrder, totalPriceOrder, tvStatusOrder;
 
         public ViewHolderOrder(@NonNull View itemView) {
             super(itemView);
             dateOrder = itemView.findViewById(R.id.tv_order_date);
             idOrder = itemView.findViewById(R.id.tv_order_id);
             totalPriceOrder = itemView.findViewById(R.id.tv_order_total_prices);
+            totalPriceOrder = itemView.findViewById(R.id.tv_order_total_prices);
+            tvStatusOrder = itemView.findViewById(R.id.tv_status_order);
         }
     }
 }

@@ -51,7 +51,6 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.ViewHold
             return new ViewHolderVoucher(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_voucher, parent, false);
-
             return new ViewHolderMyVoucher(view);
         }
     }

@@ -2,6 +2,7 @@ package vn.edu.huflit.foozie_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,11 +56,12 @@ public class CartActivity extends AppCompatActivity {
 
     private void setUpWidgetListener() {
         btnBack.setOnClickListener(v -> {
+            renderTotal();
             Intent intent = new Intent(CartActivity.this, MainActivity.class);
             startActivity(intent);
         });
         btnConfirm.setOnClickListener(v -> {
-            if (foodCart.isEmpty()) {
+            if (cartAdapter.mCart.isEmpty()) {
                 Utilities.alert(v, "Hãy thêm món ăn vào giỏ hàng", Utilities.AlertType.Error);
                 return;
             } else {

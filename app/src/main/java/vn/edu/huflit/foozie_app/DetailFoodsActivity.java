@@ -47,7 +47,8 @@ public class DetailFoodsActivity extends AppCompatActivity implements FoodAdapte
             } catch (Exception e) {
                 Utilities.alert(v, e.getMessage(), Utilities.AlertType.Error);
             }
-            super.onBackPressed();
+            Intent i = new Intent(DetailFoodsActivity.this, MainActivity.class);
+            startActivity(i);
         });
 
         btnBack.setOnClickListener(v -> {
