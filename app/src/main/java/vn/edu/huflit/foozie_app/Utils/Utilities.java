@@ -26,7 +26,7 @@ public class Utilities {
     static public String FCM;
 
     static public SharedPreferences store;
-    static public FirebaseMessaging fmessage = FirebaseMessaging.getInstance();
+    static public FirebaseMessaging fMessage = FirebaseMessaging.getInstance();
 
     static public API api = new API();
 
@@ -61,7 +61,7 @@ public class Utilities {
     }
 
     static public String getFCMToken() {
-        Task<String> task = fmessage.getToken();
+        Task<String> task = fMessage.getToken();
 
         while (!task.isComplete()) {
         }

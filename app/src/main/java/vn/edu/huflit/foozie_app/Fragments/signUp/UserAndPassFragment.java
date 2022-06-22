@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.huflit.foozie_app.R;
@@ -73,7 +72,7 @@ public class UserAndPassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_usernme_password_, container, false);
+        return inflater.inflate(R.layout.fragment_username_password, container, false);
     }
 
     @Override
@@ -83,15 +82,17 @@ public class UserAndPassFragment extends Fragment {
         username = view.findViewById(R.id.edt_user_name_signUp);
         password = view.findViewById(R.id.edt_password_signUp);
         confirm = view.findViewById(R.id.edt_confirm_password_signUp);
-        btnRegister = (Button) view.findViewById(R.id.btn_register);
+        btnRegister = view.findViewById(R.id.btn_register);
         btnRegister.setOnClickListener(v -> {
             String Firstname = getArguments().getString("first_name");
             String Lastname = getArguments().getString("last_name");
             String Phone = getArguments().getString("phone");
             String Email = getArguments().getString("email");
+
             String Username = username.getEditText().getText().toString();
             String Password = password.getEditText().getText().toString();
             String Confirm = confirm.getEditText().getText().toString();
+
             if (Username.isEmpty() || Password.isEmpty() || Confirm.isEmpty()) {
                 Utilities.alert(view, "Vui lòng nhập đầy đủ thông tin!", Utilities.AlertType.Error);
                 return;
@@ -104,12 +105,13 @@ public class UserAndPassFragment extends Fragment {
                 Utilities.alert(view, "Vui lòng nhập mật khẩu 8 ký tự!", Utilities.AlertType.Error);
                 return;
             }
+
             try {
                 Utilities.api.SignUp(Username, Password, Firstname, Lastname, Email, Phone);
                 Intent intent = new Intent(getContext(), SignInActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Utilities.alert(v,"Hệ thống đang gặp sự cố", Utilities.AlertType.Error);
+                Utilities.alert(v,"Hệ thống đang gặp sự cố: " + e.getMessage(), Utilities.AlertType.Error);
             }
         });
     }

@@ -66,7 +66,9 @@ public class API {
     }
 
     public API() {
-        cookieStore = new HashMap<String, List<Cookie>>();
+        // init cookie storage
+        cookieStore = new HashMap<>();
+        // init JAR with method saving and read
         cookieJar = new CookieJar() {
             @Override
             public void saveFromResponse(HttpUrl url, @NonNull List<Cookie> cookies) {
@@ -79,10 +81,6 @@ public class API {
             public List<Cookie> loadForRequest(HttpUrl url) {
                 List<Cookie> cookies = cookieStore.get(url.host());
                 return cookies != null ? cookies : new ArrayList<Cookie>();
-            }
-
-            public void clearCookie() {
-                cookieStore = new HashMap<>();
             }
         };
 
@@ -105,10 +103,6 @@ public class API {
         return requestServer(path, body, "POST");
     }
 
-    private ResponseDTO requestServer(String path, String params) {
-        return requestServer(path, params, null, null);
-    }
-
     private ResponseDTO requestServer(String path, HashMap body, String method) {
         return requestServer(path, null, body != null ? RequestBody.create(JSON, gson.toJson(body)) : null, method);
     }
@@ -117,10 +111,9 @@ public class API {
         RequestTask request = new RequestTask();
         try {
             return request.execute(path, params, body, method).get();
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.e("REQUEST_ERROR", e.getMessage());
         }
         return null;
     }
@@ -144,7 +137,7 @@ public class API {
             this.getMe();
             return true;
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return false;
     }
