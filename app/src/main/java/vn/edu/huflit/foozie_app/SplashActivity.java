@@ -1,10 +1,12 @@
 package vn.edu.huflit.foozie_app;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -35,6 +37,8 @@ public class SplashActivity extends AppCompatActivity {
         logo.setAnimation(logoAnim);
 
         SharedPreferences store = this.getSharedPreferences(String.valueOf(R.string.localStoreName), Context.MODE_PRIVATE);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Thread LoadDataThread = new Thread(() -> {
             try {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import vn.edu.huflit.foozie_app.Adapters.NotificationAdapter;
+import vn.edu.huflit.foozie_app.Adapters.NotifyAdapter;
 import vn.edu.huflit.foozie_app.Adapters.VoucherAdapter;
 import vn.edu.huflit.foozie_app.CreateOrderActivity;
 import vn.edu.huflit.foozie_app.Models.Notification;
@@ -33,6 +34,7 @@ public class NotificationsFragment extends Fragment implements NotificationAdapt
     RecyclerView rvNotification;
     NotificationAdapter notificationAdapter;
     List<Notification> notifications;
+    NotifyAdapter notifyAdapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -82,6 +84,9 @@ public class NotificationsFragment extends Fragment implements NotificationAdapt
         try {
             notifications = Utilities.api.getNotifications();
             notificationAdapter = new NotificationAdapter(notifications, this);
+
+//            notifyAdapter = new NotifyAdapter(notifications);
+
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
             rvNotification.setLayoutManager(linearLayoutManager);
             rvNotification.setAdapter(notificationAdapter);
