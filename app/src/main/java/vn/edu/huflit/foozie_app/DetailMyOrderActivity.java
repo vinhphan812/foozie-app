@@ -1,14 +1,19 @@
 package vn.edu.huflit.foozie_app;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import vn.edu.huflit.foozie_app.Adapters.FoodAdapter;
+import vn.edu.huflit.foozie_app.Adapters.ListFoodOrderAdapter;
+import vn.edu.huflit.foozie_app.Models.Food;
 import vn.edu.huflit.foozie_app.Models.Order;
 import vn.edu.huflit.foozie_app.Models.User;
 import vn.edu.huflit.foozie_app.Utils.Utilities;
@@ -18,6 +23,9 @@ public class DetailMyOrderActivity extends AppCompatActivity {
     TextView tvDateOrder, tvIdOrder, tvTotalPrices, tvUserOrder, tvNoteOrder, tvPhoneUser, tvAddressUser;
     Order detailOrder;
     User user;
+    RecyclerView rvFoodDetail;
+    List<Food> foods;
+    ListFoodOrderAdapter listFoodOrderAdapter;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
     @Override
@@ -36,19 +44,31 @@ public class DetailMyOrderActivity extends AppCompatActivity {
     private void callAPI() {
         Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id", "");
-
-        if (id.isEmpty())
+        if (id.isEmpty()) {
             super.onBackPressed();
-
-        detailOrder = null;
+        }
         try {
             detailOrder = Utilities.api.getOrder(id);
         } catch (Exception e) {
-            Log.d("GET_FOOD_" + id, e.getMessage());
+            e.printStackTrace();
         }
         tvDateOrder.setText(dateFormat.format(detailOrder.order_date));
         tvIdOrder.setText(detailOrder.id);
         tvTotalPrices.setText(Utilities.moneyFormat(detailOrder.total) + " VND");
+
+        if (detailOrder.note.isEmpty()) {
+            tvNoteOrder.setText("Chưa có ghi chú cho đơn hàng này");
+        } else {
+            tvNoteOrder.setText(detailOrder.note);
+        }
+
+        foods = detailOrder.details;
+        listFoodOrderAdapter = new ListFoodOrderAdapter(foods);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rvFoodDetail.setLayoutManager(linearLayoutManager);
+        rvFoodDetail.setAdapter(listFoodOrderAdapter);
+
+        tvAddressUser.setText(detailOrder.delivery);
         try {
             user = Utilities.api.getMe();
             tvUserOrder.setText(user.first_name + " " + user.last_name);
@@ -56,12 +76,7 @@ public class DetailMyOrderActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (detailOrder.note.isEmpty()) {
-            tvNoteOrder.setText("Chưa có ghi chú cho đơn hàng này");
-        } else {
-            tvNoteOrder.setText(detailOrder.note);
-        }
-        tvAddressUser.setText(detailOrder.delivery);
+
     }
 
     private void bindWidget() {
@@ -73,6 +88,6 @@ public class DetailMyOrderActivity extends AppCompatActivity {
         tvNoteOrder = findViewById(R.id.tv_note_order_detail);
         tvPhoneUser = findViewById(R.id.tv_phone_user_order_detail);
         tvAddressUser = findViewById(R.id.tv_address_user_order_detail);
-
+        rvFoodDetail = findViewById(R.id.rv_food_detail_order);
     }
 }
